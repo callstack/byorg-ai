@@ -1,0 +1,17 @@
+{
+  "name": "@callstack/byorg-utils",
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "scripts": {
+    "build": "rslib build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@microsoft/api-extractor": "catalog:",
+    "@rslib/core": "catalog:"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "node16",
+    "moduleResolution": "node16",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noStrictGenericChecks": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "rootDirs": [
+      "./packages/core/src",
+      "./packages/slack/src",
+      "./packages/discord/src",
+      "./packages/utils/src",
+      "./packages/slack-rich-text/src"
+    ],
+    "paths": {
+      "@callstack/byorg-core": ["./packages/core/src/index.ts"],
+      "@callstack/byorg-slack": ["./packages/slack/src/index.ts"],
+      "@callstack/byorg-discord": ["./packages/discord/src/index.ts"],
+      "@callstack/byorg-utils": ["./packages/utils/src/index.ts"],
+      "@callstack/byorg-slack-rich-text": ["./packages/slack-rich-text/src/index.ts"],
+    }
+  },
+  "ts-node": {
+    "skipIgnore": true,
+    "esm": true,
+    "logError": true
+  }
+}

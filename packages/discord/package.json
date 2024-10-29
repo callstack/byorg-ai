@@ -1,0 +1,21 @@
+{
+  "name": "@callstack/byorg-discord",
+  "type": "module",
+  "license": "MIT",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "scripts": {
+    "build": "rslib build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@callstack/byorg-core": "workspace:",
+    "discord-interactions": "^4.1.0",
+    "discord.js": "^14.15.3"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "catalog:",
+    "@rslib/core": "catalog:"
+  }
+}

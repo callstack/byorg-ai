@@ -1,0 +1,30 @@
+{
+  "name": "@callstack/byorg-core",
+  "type": "module",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "scripts": {
+    "build": "rslib build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.26.1",
+    "@callstack/byorg-utils": "workspace:",
+    "ai": "^3.4.7",
+    "openai": "^4.56.1",
+    "tiktoken": "^1.0.16",
+    "ts-regex-builder": "^1.7.1"
+  },
+  "peerDependencies": {
+    "zod": "catalog:"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@microsoft/api-extractor": "catalog:",
+    "@rslib/core": "catalog:",
+    "vitest": "^2.1.3"
+  }
+}

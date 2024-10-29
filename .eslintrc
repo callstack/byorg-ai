@@ -1,0 +1,25 @@
+{
+  "extends": "@callstack/eslint-config/node",
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "quoteProps": "consistent",
+        "singleQuote": true,
+        "tabWidth": 2,
+        "trailingComma": "all",
+        "useTabs": false
+      }
+    ]
+  },
+  "parserOptions": {
+    "project": ["./tsconfig.lint.json"]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": ["./tsconfig.lint.json"]
+      }
+    }
+  }
+}
