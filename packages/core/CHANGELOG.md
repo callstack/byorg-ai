@@ -1,5 +1,13 @@
 # @callstack/byorg-core
 
+## 0.1.1
+
+### Patch Changes
+
+- b1a5d1a: Tweaked packaged files.
+- Updated dependencies [b1a5d1a]
+  - @callstack/byorg-utils@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes
