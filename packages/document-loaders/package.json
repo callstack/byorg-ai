@@ -2,9 +2,17 @@
   "name": "@callstack/document-loaders",
   "version": "0.1.0",
   "type": "module",
+  "license": "MIT",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
   "scripts": {
     "build": "rslib build",
     "typecheck": "tsc --noEmit"
@@ -27,6 +35,5 @@
     "@types/lodash": "^4.17.9",
     "@types/markdown-table": "2.0.0",
     "jest": "^29.7.0"
-  },
-  "license": "MIT"
+  }
 }
