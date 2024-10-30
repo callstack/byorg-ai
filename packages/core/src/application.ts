@@ -10,7 +10,7 @@ import {
 } from './domain.js';
 import { Middleware, MiddlewareHandler } from './middleware.js';
 import { PerformanceTimeline } from './performance.js';
-import { getReferencesStorage } from './references.js';
+import { getReferenceStorage } from './references.js';
 import { ApplicationTool } from './tools.js';
 import { requestValidationMiddleware } from './validation.js';
 
@@ -98,7 +98,7 @@ export function createApp(config: ApplicationConfig): Application {
         },
 
         tools,
-        references: getReferencesStorage(),
+        references: getReferenceStorage(),
         resolvedEntities: {},
         onPartialResponse,
         extras: options?.extras ?? {},

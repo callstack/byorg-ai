@@ -33,6 +33,7 @@ export { loggingPlugin } from './plugins/logging.js';
 export type { ApplicationTool } from './tools.js';
 
 export type { ReferenceStorage, DocumentReference } from './references.js';
+export { getReferenceStorage } from './references.js';
 
 export { UnsupportedAttachmentsException } from './validation.js';
 

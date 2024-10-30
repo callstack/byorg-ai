@@ -1,4 +1,4 @@
-export const getReferencesStorage = (): ReferenceStorage => {
+export const getReferenceStorage = (): ReferenceStorage => {
   const referencesKeys = new Set<string>();
   const references: DocumentReference[] = [];
 
