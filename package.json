@@ -7,10 +7,12 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "test": "turbo test",
     "typecheck": "turbo run typecheck",
-    "validate": "turbo build --force && turbo run typecheck test --force && pnpm lint"
+    "validate": "turbo build --force && turbo run typecheck test --force && pnpm lint",
+    "publish-packages": "pnpm validate && pnpm build && changeset version && changeset publish"
   },
   "devDependencies": {
     "@callstack/eslint-config": "^15.0.0",
+    "@changesets/cli": "^2.27.9",
     "@types/node": "^22.5.1",
     "dotenv-cli": "^7.4.2",
     "eslint": "^8.4.1",
