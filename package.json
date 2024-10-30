@@ -8,7 +8,7 @@
     "test": "turbo test",
     "typecheck": "turbo run typecheck",
     "validate": "turbo build --force && turbo run typecheck test --force && pnpm lint",
-    "publish-packages": "eslint \"**/*.{js,ts,tsx}\" && turbo run build typecheck test"
+    "publish-packages": "eslint \"**/*.{js,ts,tsx}\" && turbo run build typecheck test && changeset version && changeset publish"
   },
   "devDependencies": {
     "@callstack/eslint-config": "^15.0.0",
