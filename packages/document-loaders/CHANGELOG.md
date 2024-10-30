@@ -1,5 +1,11 @@
 # @callstack/document-loaders
 
+## 0.1.2
+
+### Patch Changes
+
+- @callstack/byorg-utils@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes

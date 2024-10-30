@@ -1,6 +1,6 @@
 {
   "name": "@callstack/byorg-slack",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "license": "MIT",
   "main": "./dist/cjs/index.cjs",
@@ -18,8 +18,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@callstack/byorg-core": "0.1.1",
-    "@callstack/byorg-utils": "0.1.1",
+    "@callstack/byorg-core": "0.1.2",
+    "@callstack/byorg-utils": "0.1.2",
     "@callstack/slack-rich-text": "0.1.1",
     "@slack/bolt": "^3.21.1",
     "@slack/web-api": "^6.12.1",

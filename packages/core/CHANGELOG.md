@@ -1,5 +1,12 @@
 # @callstack/byorg-core
 
+## 0.1.2
+
+### Patch Changes
+
+- 5acde4c: Add missing export for "getReferenceStorage"
+  - @callstack/byorg-utils@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes
