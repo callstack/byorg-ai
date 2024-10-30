@@ -1,6 +1,6 @@
 {
-  "name": "@callstack/byorg-document-loaders",
-  "version": "0.1.0",
+  "name": "@callstack/document-loaders",
+  "version": "0.0.0",
   "type": "module",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",

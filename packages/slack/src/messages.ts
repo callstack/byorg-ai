@@ -5,7 +5,7 @@ import {
 import { WebClient } from '@slack/web-api';
 import { RichTextBlock } from '@slack/bolt';
 import { FileBuffer, Message } from '@callstack/byorg-core';
-import { parseRichTextBlockToMarkdown } from '@callstack/byorg-slack-rich-text';
+import { parseRichTextBlockToMarkdown } from '@callstack/slack-rich-text';
 import { fetchFile } from './slack-api.js';
 
 export async function toCoreMessage(

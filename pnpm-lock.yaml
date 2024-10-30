@@ -167,12 +167,12 @@ importers:
       '@callstack/byorg-core':
         specifier: 'workspace:'
         version: link:../core
-      '@callstack/byorg-slack-rich-text':
-        specifier: 'workspace:'
-        version: link:../slack-rich-text
       '@callstack/byorg-utils':
         specifier: 'workspace:'
         version: link:../utils
+      '@callstack/slack-rich-text':
+        specifier: 'workspace:'
+        version: link:../slack-rich-text
       '@slack/bolt':
         specifier: ^3.21.1
         version: 3.22.0

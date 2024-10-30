@@ -23,7 +23,7 @@
       "@callstack/byorg-slack": ["./packages/slack/src/index.ts"],
       "@callstack/byorg-discord": ["./packages/discord/src/index.ts"],
       "@callstack/byorg-utils": ["./packages/utils/src/index.ts"],
-      "@callstack/byorg-slack-rich-text": ["./packages/slack-rich-text/src/index.ts"],
+      "@callstack/slack-rich-text": ["./packages/slack-rich-text/src/index.ts"]
     }
   },
   "ts-node": {

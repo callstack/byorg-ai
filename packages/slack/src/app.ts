@@ -2,7 +2,7 @@ import Slack, { ContextBlock, LogLevel, RichTextBlock, SayFn } from '@slack/bolt
 import { WebClient } from '@slack/web-api';
 import { Application } from '@callstack/byorg-core';
 import { logger } from '@callstack/byorg-utils';
-import { parseMarkdownToRichTextBlock } from '@callstack/byorg-slack-rich-text';
+import { parseMarkdownToRichTextBlock } from '@callstack/slack-rich-text';
 import pDebounce from 'p-debounce';
 import {
   SlackMessage,
