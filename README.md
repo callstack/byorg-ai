@@ -4,7 +4,7 @@
 
 ### BYOrg AI Framework
 
-Relevant packages:
+Packages:
 
 - `packages/core` - contains the core logic for the chatbot framework
 - `packages/slack` - contains the logic for the slack integration
@@ -12,10 +12,6 @@ Relevant packages:
 - `packages/utils` - contains the utility functions (e.g. logger)
 - `packages/document-loaders` - contains the document loaders (e.g. for Google Drive, Notion, etc.)
 - `packages/slack-rich-text` - custom Markdown renderer for Slack Blocks/Rich Text format
-
-### Other packages (stays here as an example)
-
-- `apps/ai-cli` - AI CLI migrated to use BYOrg AI framework
 
 ## BYOrg AI Framework key concepts (`core` package)
 

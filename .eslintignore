@@ -7,5 +7,3 @@ rslib.config.ts
 rsbuild.config.ts
 vitest.config.ts
 
-apps/ai-cli/website/
-

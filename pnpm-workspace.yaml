@@ -1,6 +1,5 @@
 packages:
   - packages/*
-  - apps/*
 
 catalog:
   '@microsoft/api-extractor': '^7.47.9'
