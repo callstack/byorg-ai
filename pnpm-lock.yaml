@@ -66,8 +66,8 @@ importers:
         specifier: ^0.26.1
         version: 0.26.1(encoding@0.1.13)
       '@callstack/byorg-utils':
-        specifier: 0.1.1
-        version: 0.1.1
+        specifier: 0.1.2
+        version: 0.1.2
       ai:
         specifier: ^3.4.7
         version: 3.4.7(openai@4.56.1(encoding@0.1.13)(zod@3.23.8))(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)
@@ -97,8 +97,8 @@ importers:
   packages/discord:
     dependencies:
       '@callstack/byorg-core':
-        specifier: 0.1.1
-        version: 0.1.1(encoding@0.1.13)(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)
+        specifier: 0.1.2
+        version: 0.1.2(encoding@0.1.13)(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)
       discord-interactions:
         specifier: ^4.1.0
         version: 4.1.0
@@ -116,8 +116,8 @@ importers:
   packages/document-loaders:
     dependencies:
       '@callstack/byorg-utils':
-        specifier: 0.1.1
-        version: 0.1.1
+        specifier: 0.1.2
+        version: 0.1.2
       '@google-cloud/local-auth':
         specifier: ^3.0.1
         version: 3.0.1(encoding@0.1.13)
@@ -165,11 +165,11 @@ importers:
   packages/slack:
     dependencies:
       '@callstack/byorg-core':
-        specifier: 0.1.1
-        version: 0.1.1(encoding@0.1.13)(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)
+        specifier: 0.1.2
+        version: 0.1.2(encoding@0.1.13)(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)
       '@callstack/byorg-utils':
-        specifier: 0.1.1
-        version: 0.1.1
+        specifier: 0.1.2
+        version: 0.1.2
       '@callstack/slack-rich-text':
         specifier: 0.1.1
         version: 0.1.1(@slack/web-api@6.13.0)
@@ -493,13 +493,13 @@ packages:
   '@bufbuild/protobuf@2.2.0':
     resolution: {integrity: sha512-+imAQkHf7U/Rwvu0wk1XWgsP3WnpCWmK7B48f0XqSNzgk64+grljTKC7pnO/xBiEMUziF7vKRfbBnOQhg126qQ==}
 
-  '@callstack/byorg-core@0.1.1':
-    resolution: {integrity: sha512-ud9XgsNsJL7tSYoqPgR+NwzFg/S/8HenSDMayxgpbxa2y2U7x1sO4N9ZxGJIm6USO8+uo91xZ046rZu0ebGhZg==}
+  '@callstack/byorg-core@0.1.2':
+    resolution: {integrity: sha512-yakxYXRk52Y6mNrSRAhY9nECnYRCkizRFnAs6YuKKfPfLOFV8uhh+UYs43mTfFfqXpDMv6ZBeuh5A6G+Qww58Q==}
     peerDependencies:
       zod: ^3.23.8
 
-  '@callstack/byorg-utils@0.1.1':
-    resolution: {integrity: sha512-bYDuTMV5d871JytXwUYWWixRvrYGkVedtpQ2QbSa4wipFzQVFtbFcAJpFEwN344SXfKenK+uzheYf9GaaguO9g==}
+  '@callstack/byorg-utils@0.1.2':
+    resolution: {integrity: sha512-MVudP/sifhbeEj2IGeMDmumo/iF2ja5iTtZj5FtaY8i6RMgC1pqe4a4ok0sFI5rAV9yELpHnYB8zwPE8EpvnGw==}
 
   '@callstack/eslint-config@15.0.0':
     resolution: {integrity: sha512-dMCqo0xA5i/u+onI2FUQIdWSEKRd/NVtd1dtmov2zn1Yg/2j56WWdt3VPhsCrIw/VYQJSr2kJi0egrNdKkZlwQ==}
@@ -4832,10 +4832,10 @@ snapshots:
   '@bufbuild/protobuf@2.2.0':
     optional: true
 
-  '@callstack/byorg-core@0.1.1(encoding@0.1.13)(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)':
+  '@callstack/byorg-core@0.1.2(encoding@0.1.13)(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)':
     dependencies:
       '@anthropic-ai/sdk': 0.26.1(encoding@0.1.13)
-      '@callstack/byorg-utils': 0.1.1
+      '@callstack/byorg-utils': 0.1.2
       ai: 3.4.7(openai@4.56.1(encoding@0.1.13)(zod@3.23.8))(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)
       openai: 4.56.1(encoding@0.1.13)(zod@3.23.8)
       tiktoken: 1.0.16
@@ -4849,7 +4849,7 @@ snapshots:
       - svelte
       - vue
 
-  '@callstack/byorg-utils@0.1.1': {}
+  '@callstack/byorg-utils@0.1.2': {}
 
   '@callstack/eslint-config@15.0.0(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.0)(jest@29.7.0(@types/node@22.5.1)(ts-node@10.9.2(@types/node@22.5.1)(typescript@5.6.2)))(typescript@5.6.2)':
     dependencies:
