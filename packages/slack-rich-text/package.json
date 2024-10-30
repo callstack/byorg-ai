@@ -1,5 +1,5 @@
 {
-  "name": "@callstack/byorg-slack-rich-text",
+  "name": "@callstack/slack-rich-text",
   "version": "0.0.0",
   "type": "module",
   "main": "./dist/cjs/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@callstack/byorg-document-loaders",
+  "name": "@callstack/document-loaders",
   "version": "0.0.0",
   "type": "module",
   "main": "./dist/cjs/index.cjs",
