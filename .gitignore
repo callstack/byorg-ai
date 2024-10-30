@@ -1,0 +1,43 @@
+# OSX
+.DS_Store
+
+# VSCode
+.vscode/
+jsconfig.json
+
+# WebStorm
+.idea
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnpm-debug.log*
+
+# TypeScript cache
+*.tsbuildinfo
+
+# BUCK
+buck-out/
+\.buckd/
+
+# Build artifacts
+build/
+dist/
+docs/doc_build
+
+# Envs
+.env
+.env.*
+service-account.json
+google-*.json
+
+# Other
+coverage/
+
+# Rslib
+**/.rslib
+
+# Turborepo
+.turbo

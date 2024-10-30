@@ -1,0 +1,25 @@
+{
+  "name": "@callstack/byorg-slack-rich-text",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "scripts": {
+    "build": "rslib build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "ts-regex-builder": "^1.7.1",
+    "date-fns": "^3.6.0",
+    "marked": "^14.0.0"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "catalog:",
+    "@rslib/core": "catalog:"
+  },
+  "peerDependencies": {
+    "@slack/web-api": "^6.11.2"
+  },
+  "license": "MIT"
+}
