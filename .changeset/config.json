@@ -1,8 +1,8 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.3/schema.json",
   "changelog": "@changesets/cli/changelog",
-  "commit": false,
-  "fixed": [],
+  "commit": true,
+  "fixed": [["@callstack/byorg-*"]],
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",
