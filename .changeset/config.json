@@ -4,7 +4,7 @@
   "commit": true,
   "fixed": [["@callstack/byorg-*"]],
   "linked": [],
-  "access": "restricted",
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": []
