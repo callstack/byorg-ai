@@ -2,9 +2,17 @@
   "name": "@callstack/byorg-core",
   "version": "0.1.0",
   "type": "module",
+  "license": "MIT",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
   "scripts": {
     "build": "rslib build",
     "typecheck": "tsc --noEmit",
@@ -22,7 +30,6 @@
   "peerDependencies": {
     "zod": "catalog:"
   },
-  "license": "MIT",
   "devDependencies": {
     "@microsoft/api-extractor": "catalog:",
     "@rslib/core": "catalog:",
