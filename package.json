@@ -7,7 +7,8 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "test": "turbo test",
     "typecheck": "turbo run typecheck",
-    "validate": "turbo build --force && turbo run typecheck test --force && pnpm lint"
+    "validate": "turbo build --force && turbo run typecheck test --force && pnpm lint",
+    "publish-packages": "eslint \"**/*.{js,ts,tsx}\" && turbo run build typecheck test"
   },
   "devDependencies": {
     "@callstack/eslint-config": "^15.0.0",
@@ -21,6 +22,7 @@
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "turbo": "^2.1.3",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "@changesets/cli": "^2.27.9"
   }
 }
