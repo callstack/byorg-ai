@@ -1,8 +1,9 @@
-# Slack
+# BYOrg AI Slack package
+
+This package contains functions for handling slack integration
 
 ## Environment variables
-
-### Required
+This package expects following env variables to be set
 
 | Name            | Description                  |
 |-----------------|------------------------------|
