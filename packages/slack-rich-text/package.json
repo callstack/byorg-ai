@@ -18,15 +18,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "ts-regex-builder": "^1.7.1",
     "date-fns": "^3.6.0",
-    "marked": "^14.0.0"
+    "marked": "^14.0.0",
+    "ts-regex-builder": "^1.8.2"
   },
   "peerDependencies": {
-    "@slack/web-api": "^6.11.2"
-  },
-  "devDependencies": {
     "@microsoft/api-extractor": "catalog:",
-    "@rslib/core": "catalog:"
+    "@rslib/core": "catalog:",
+    "@slack/web-api": "^6.11.2"
   }
 }

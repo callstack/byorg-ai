@@ -27,12 +27,12 @@
     "lodash": "^4.17.21",
     "markdown-table": "2.0.0",
     "pdfjs-dist": "^3",
-    "ts-regex-builder": "^1.7.1"
+    "ts-regex-builder": "^1.8.2"
   },
   "devDependencies": {
     "@rslib/core": "catalog:",
     "@types/jest": "^29.5.12",
-    "@types/lodash": "^4.17.9",
+    "@types/lodash": "^4.17.13",
     "@types/markdown-table": "2.0.0",
     "jest": "^29.7.0"
   }
