@@ -1,0 +1,16 @@
+{
+  "name": "@callstack/byorg-docs",
+  "type": "module",
+  "packageManager": "pnpm@9.12.2+sha256.2ef6e547b0b07d841d605240dce4d635677831148cd30f6d564b8f4f928f73d2",
+  "scripts": {
+    "dev": "rspress dev",
+    "build": "rspress build",
+    "preview": "rspress preview"
+  },
+  "devDependencies": {
+    "@rspress/plugin-client-redirects": "^1.35.1",
+    "rspress": "^1.35.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}

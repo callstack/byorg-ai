@@ -1,0 +1,12 @@
+[
+  {
+    "text": "Docs",
+    "link": "/docs/about",
+    "activeMatch": "^/docs/"
+  },
+  {
+    "text": "API",
+    "link": "/api/about",
+    "activeMatch": "^/api/"
+  }
+]

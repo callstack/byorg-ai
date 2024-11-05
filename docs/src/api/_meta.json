@@ -1,0 +1,23 @@
+[
+  {
+    "type": "section-header",
+    "label": "API"
+  },
+  {
+    "type": "file",
+    "name": "about",
+    "label": "About"
+  },
+  {
+    "type": "dir",
+    "name": "core",
+    "label": "@callstack/core",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "slack",
+    "label": "@callstack/slack",
+    "collapsed": true
+  }
+]
