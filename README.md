@@ -1,4 +1,4 @@
-# BYOrg AI - chatbot application framework
+# byorg-ai - chatbot application framework
 
 ## Structure
 
