@@ -1,5 +1,11 @@
 # @callstack/slack-rich-text
 
+## 0.2.0
+
+### Patch Changes
+
+- 45f48db: chore: update deps
+
 ## 0.1.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@callstack/document-loaders",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "type": "module",
   "license": "MIT",
   "main": "./dist/cjs/index.cjs",
@@ -18,7 +18,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@callstack/byorg-utils": "0.1.2",
+    "@callstack/byorg-utils": "0.2.0",
     "@google-cloud/local-auth": "^3.0.1",
     "@notionhq/client": "^2.2.15",
     "google-auth-library": "^9.14.1",

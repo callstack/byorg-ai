@@ -1,6 +1,6 @@
 {
   "name": "@callstack/byorg-core",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "type": "module",
   "license": "MIT",
   "main": "./dist/cjs/index.cjs",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.26.1",
-    "@callstack/byorg-utils": "0.1.2",
+    "@callstack/byorg-utils": "0.2.0",
     "ai": "^3.4.33",
     "openai": "^4.71.0",
     "tiktoken": "^1.0.17",

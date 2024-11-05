@@ -1,5 +1,16 @@
 # @callstack/document-loaders
 
+## 0.2.0
+
+### Minor Changes
+
+- 45f48db: feat: loading document metadata function
+
+### Patch Changes
+
+- 45f48db: chore: update deps
+  - @callstack/byorg-utils@0.2.0
+
 ## 0.1.2
 
 ### Patch Changes
