@@ -1,6 +1,6 @@
 export type { DocumentLoader, DocumentLoaderResult, DocumentMetadata } from './loaders/types.js';
 
-export { loadDocument } from './loaders/index.js';
+export { loadDocument, loadDocumentMetadata, registerLoader } from './loaders/index.js';
 
 export { notionPdfBlockLoader } from './loaders/notion-pdf-block.js';
 export { googleDriveLoader } from './loaders/google-drive.js';

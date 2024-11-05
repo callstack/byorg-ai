@@ -11,10 +11,16 @@ const BLOCK_ID_REGEX = /^[a-z0-9]{32}$/; // 32 characters
 export const notionPdfBlockLoader: DocumentLoader = {
   isSupported,
   loadDocument,
+  loadMetadata,
 };
 
 function isSupported(source: string) {
   return source.startsWith(URL_ROOT) && BLOCK_ID_REGEX.test(getUrlHash(source));
+}
+
+async function loadMetadata(url: string) {
+  const pdfBlock = await fetchPdfBlock(url);
+  return getMetadataFromBlock(url, pdfBlock);
 }
 
 async function loadDocument(url: string) {
