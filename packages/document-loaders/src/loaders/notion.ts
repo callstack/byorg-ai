@@ -7,6 +7,7 @@ const URL_ROOT = 'https://www.notion.so/';
 export const notionLoader: DocumentLoader = {
   isSupported,
   loadDocument,
+  loadMetadata,
 };
 
 function isSupported(source: string) {
@@ -25,6 +26,15 @@ async function loadDocument(url: string) {
   const content = await parseBlocks(blocks, { pageUrl: url, depth: 0 });
 
   return { content, metadata };
+}
+
+async function loadMetadata(url: string) {
+  const pageId = extractNotionPageId(url);
+  if (!pageId) {
+    throw new Error(`NotionLoader Invalid Notion URL: ${url}`);
+  }
+
+  return await fetchPageMetadata(pageId);
 }
 
 function extractNotionPageId(url: string) {

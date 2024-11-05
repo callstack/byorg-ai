@@ -11,6 +11,7 @@ const URL_ROOT = 'https://docs.google.com/presentation/d/';
 export const googleSlidesLoader: DocumentLoader = {
   isSupported,
   loadDocument,
+  loadMetadata,
 };
 
 function isSupported(source: string) {

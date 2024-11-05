@@ -11,6 +11,7 @@ const URL_ROOT = 'https://docs.google.com/document/d/';
 export const googleDocsLoader: DocumentLoader = {
   isSupported,
   loadDocument,
+  loadMetadata,
 };
 
 function isSupported(source: string) {
