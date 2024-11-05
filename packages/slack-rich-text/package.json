@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "type": "module",
   "license": "MIT",
+  "author": "Kewin Wereszczynski <kewin.werezczynski@callstack.com>",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
