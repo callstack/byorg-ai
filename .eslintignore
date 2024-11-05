@@ -2,9 +2,10 @@ node_modules/
 
 dist/
 
+docs/
+
 tsup.config.ts
 rslib.config.ts
-rsrpress.config.ts
 rsbuild.config.ts
 vitest.config.ts
 
