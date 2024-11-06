@@ -2,7 +2,6 @@ import { WebClient } from '@slack/web-api';
 import { withCache } from '@callstack/byorg-utils';
 import { getIdentity } from './slack-api.js';
 
-// Get slack bot ID
 export const getBotId = withCache(async (client: WebClient) => {
   const response = await getIdentity(client);
 
