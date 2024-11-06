@@ -1,3 +1,3 @@
-# BYOrg AI Utils package
+# byorg-ai Utils package
 
 This package contains utility functions used across the framework

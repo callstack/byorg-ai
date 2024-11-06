@@ -1,0 +1,30 @@
+[
+  {
+    "type": "file",
+    "name": "about",
+    "label": "About"
+  },
+  {
+    "type": "file",
+    "name": "getting-started",
+    "label": "Getting Started"
+  },
+  {
+    "type": "dir",
+    "name": "core",
+    "label": "Core",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "slack",
+    "label": "Slack",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "discord",
+    "label": "Discord",
+    "collapsed": true
+  }
+]
