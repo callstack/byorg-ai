@@ -16,11 +16,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check for changeset
-        run: pnpm changeset status
-
       - name: Setup
         uses: ./.github/actions/setup
+
+      - name: Check for changeset
+        run: pnpm changeset status
 
       - name: Build packages
         run: pnpm run build
