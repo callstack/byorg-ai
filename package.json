@@ -9,6 +9,7 @@
     "test": "turbo test",
     "typecheck": "turbo run typecheck",
     "validate": "turbo build --force && turbo run typecheck test --force && pnpm lint",
+    "check-changeset": "pnpm changeset status",
     "publish-packages": "pnpm validate && pnpm build && changeset version && changeset publish"
   },
   "devDependencies": {
