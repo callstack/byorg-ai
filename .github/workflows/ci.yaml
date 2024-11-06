@@ -15,9 +15,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup
         uses: ./.github/actions/setup
+
+      - name: Require changeset
+        run: pnpm changeset status --since=origin/${{ github.base_ref }}
 
       - name: Build packages
         run: pnpm run build
