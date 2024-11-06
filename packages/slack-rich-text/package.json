@@ -3,6 +3,8 @@
   "version": "0.2.0",
   "type": "module",
   "license": "MIT",
+  "author": "Kewin Wereszczynski <kewin.wereszczynski@callstack.com> (https://github.com/Q1w1N)",
+  "repository": "https://github.com/callstack/byorg-ai",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
