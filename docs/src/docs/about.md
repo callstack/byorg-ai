@@ -1,3 +1,3 @@
-# About BYOrg-AI
+# About byorg-ai
 
-This is main section about BYOrg-AI Framework
+This is main section about byorg-ai Framework

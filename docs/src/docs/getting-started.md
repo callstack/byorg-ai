@@ -1,3 +1,3 @@
 # Getting Started
 
-How to get started with Cass
+How to get started with byorg-ai

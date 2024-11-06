@@ -1,3 +1,3 @@
 # About
 
-This API documentation is about BYOrg-AI Framework
+This API documentation is about byorg-ai Framework

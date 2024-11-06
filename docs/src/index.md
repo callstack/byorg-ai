@@ -2,7 +2,7 @@
 pageType: home
 
 hero:
-  name: BYOrg-AI
+  name: byorg-ai
   text: 'AI Assistants Framework'
   tagline: A framework to make development of your AI Assistant faster and easier.
   actions:
