@@ -5,7 +5,7 @@
   "fixed": [["@callstack/byorg-*"]],
   "linked": [],
   "access": "public",
-  "baseBranch": "main",
+  "baseBranch": "origin/main",
   "updateInternalDependencies": "patch",
   "ignore": []
 }
