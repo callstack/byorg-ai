@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Check for changeset
-        run: pnpm check-changeset
+        run: pnpm changeset status --since=main
 
       - name: Build packages
         run: pnpm run build
