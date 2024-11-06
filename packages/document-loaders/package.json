@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "type": "module",
   "license": "MIT",
-  "author": "Szymon Chmal <szymon.chmal@callstack.com>, Maciej Jastrzębski <maciej.jastrzębski@callstack.com>, Kewin Wereszczynski <kewin.werezczynski@callstack.com>",
+  "author": "Szymon Chmal <szymon.chmal@callstack.com>, Maciej Jastrzebski <maciej.jastrzebski@callstack.com>, Kewin Wereszczynski <kewin.wereszczynski@callstack.com>",
   "repository": "https://github.com/callstack/byorg-ai",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
