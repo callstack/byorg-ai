@@ -2,7 +2,7 @@
 
 ## Structure
 
-### BYOrg AI Framework
+### byorg-ai framework
 
 Packages:
 
@@ -13,7 +13,7 @@ Packages:
 - `packages/document-loaders` - contains the document loaders (e.g. for Google Drive, Notion, etc.)
 - `packages/slack-rich-text` - custom Markdown renderer for Slack Blocks/Rich Text format
 
-## BYOrg AI Framework key concepts (`core` package)
+## byorg-ai framework key concepts (`core` package)
 
 - `Application` (message processor) - pipeline for processing messages from the user. In starts with conversation history (e.g. for Slack), then in passes the message through a series of middleware and finally to AI provider (e.g. OpenAI) which produces the response.
 - `Middleware` - a middleware is a function that processes the message before it is passed to the AI provider. It is used to add custom logic to the message processing pipeline.
