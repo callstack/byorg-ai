@@ -10,7 +10,7 @@ import {
   ConversationMode,
 } from './types.js';
 import { fetchFileInfo, getThread } from './slack-api.js';
-import { toCoreMessage } from './messages.js';
+import { formatGroupMessage, toCoreMessage } from './messages.js';
 import { wait } from './utils.js';
 import { getBotId } from './bot-id.js';
 
@@ -62,6 +62,12 @@ function configureSlackApp(app: Application, slack: Slack.App): void {
     const messages = await Promise.all(
       thread.map((message) => toCoreMessage(message, botId, client)),
     );
+
+    if (conversationMode === 'public_channel') {
+      messages.forEach((message) => {
+        message.content = formatGroupMessage(message);
+      });
+    }
 
     logger.debug(`[SLACK] Fetched thread with ${messages.length} message(s).`);
 

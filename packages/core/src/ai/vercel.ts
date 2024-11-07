@@ -216,7 +216,7 @@ function toUserContent(message: Message): UserContent {
   const files = message.attachments ?? [];
 
   return [
-    { type: 'text' as const, text: formatMessage(message) },
+    { type: 'text' as const, text: message.content },
     ...files.map((file) => ({
       type: 'image' as const,
       image: file.buffer,
@@ -225,22 +225,18 @@ function toUserContent(message: Message): UserContent {
   ];
 }
 
-function formatMessage(message: Message): string {
-  if (!message.senderId) {
-    return message.content;
-  }
-
-  return `[${message.senderId}] ${message.content}`;
-}
-
 function toNumberOrZero(n: number): number {
   return Number.isNaN(n) ? 0 : n;
 }
 
 function formatResolvedEntities(entities: Record<string, unknown>): string {
-  return `ENTITY DICTIONARY: \n
-      ${Object.entries(entities)
-        .map(([key, value]) => `'${key}' is '${JSON.stringify(value)}'`)
-        .join('\n')}
-    `;
+  if (Object.keys(entities).length) {
+    return `ENTITY DICTIONARY: \n
+    ${Object.entries(entities)
+      .map(([key, value]) => `'${key}' is '${JSON.stringify(value)}'`)
+      .join('\n')}
+      `;
+  } else {
+    return '';
+  }
 }

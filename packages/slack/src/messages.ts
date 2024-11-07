@@ -45,3 +45,11 @@ function fetchAttachments(
 
   return Promise.all(urls.map((file) => fetchFile(client, file)));
 }
+
+export function formatGroupMessage(message: Message): string {
+  if (!message.senderId) {
+    return message.content;
+  }
+
+  return `[${message.senderId}] ${message.content}`;
+}
