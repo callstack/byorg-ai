@@ -1,5 +1,15 @@
 # @callstack/byorg-slack
 
+## 0.3.1
+
+### Patch Changes
+
+- 3fb9634: add explicit "exports" key to package.json
+- Updated dependencies [3fb9634]
+  - @callstack/byorg-core@0.3.1
+  - @callstack/slack-rich-text@0.3.1
+  - @callstack/byorg-utils@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes

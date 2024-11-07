@@ -1,5 +1,11 @@
 # @callstack/slack-rich-text
 
+## 0.3.1
+
+### Patch Changes
+
+- 3fb9634: add explicit "exports" key to package.json
+
 ## 0.3.0
 
 ### Patch Changes

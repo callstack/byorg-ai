@@ -84,8 +84,8 @@ importers:
         specifier: ^0.26.1
         version: 0.26.1(encoding@0.1.13)
       '@callstack/byorg-utils':
-        specifier: 0.3.0
-        version: 0.3.0
+        specifier: 0.3.1
+        version: 0.3.1
       ai:
         specifier: ^3.4.33
         version: 3.4.33(openai@4.71.0(encoding@0.1.13)(zod@3.23.8))(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)
@@ -115,8 +115,8 @@ importers:
   packages/discord:
     dependencies:
       '@callstack/byorg-core':
-        specifier: 0.3.0
-        version: 0.3.0(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(zod@3.23.8)
+        specifier: 0.3.1
+        version: 0.3.1(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)
       discord-interactions:
         specifier: ^4.1.0
         version: 4.1.0
@@ -134,8 +134,8 @@ importers:
   packages/document-loaders:
     dependencies:
       '@callstack/byorg-utils':
-        specifier: 0.3.0
-        version: 0.3.0
+        specifier: 0.3.1
+        version: 0.3.1
       '@google-cloud/local-auth':
         specifier: ^3.0.1
         version: 3.0.1(encoding@0.1.13)
@@ -183,14 +183,14 @@ importers:
   packages/slack:
     dependencies:
       '@callstack/byorg-core':
-        specifier: 0.3.0
-        version: 0.3.0(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(zod@3.23.8)
+        specifier: 0.3.1
+        version: 0.3.1(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)
       '@callstack/byorg-utils':
-        specifier: 0.3.0
-        version: 0.3.0
+        specifier: 0.3.1
+        version: 0.3.1
       '@callstack/slack-rich-text':
-        specifier: 0.3.0
-        version: 0.3.0(@microsoft/api-extractor@7.47.9(@types/node@22.9.0))(@rslib/core@0.0.5(@microsoft/api-extractor@7.47.9(@types/node@22.9.0))(typescript@5.6.3))(@slack/web-api@6.13.0)
+        specifier: 0.3.1
+        version: 0.3.1(@microsoft/api-extractor@7.47.9(@types/node@22.9.0))(@rslib/core@0.0.5(@microsoft/api-extractor@7.47.9(@types/node@22.9.0))(typescript@5.6.3))(@slack/web-api@6.13.0)
       '@slack/bolt':
         specifier: ^3.21.1
         version: 3.22.0
@@ -527,13 +527,13 @@ packages:
   '@bufbuild/protobuf@2.2.2':
     resolution: {integrity: sha512-UNtPCbrwrenpmrXuRwn9jYpPoweNXj8X5sMvYgsqYyaH8jQ6LfUJSk3dJLnBK+6sfYPrF4iAIo5sd5HQ+tg75A==}
 
-  '@callstack/byorg-core@0.3.0':
-    resolution: {integrity: sha512-mo3yUtJvNv6Z0xz6SUvmxiDdmIvHTXMhp3nkO2GwCmZlhhrbEJpwwjxKlsq/dYkMfA58/09HO9lMGLzp/wI1Ww==}
+  '@callstack/byorg-core@0.3.1':
+    resolution: {integrity: sha512-JJYr9u8WAtvR6ILz9JYp4FOQaAunSQld8Qy9GqeK2YEZaIMV/tJh/c5lyWRbz8/LhhGTlRN0MSxxu6Z+wclwlQ==}
     peerDependencies:
       zod: ^3.23.8
 
-  '@callstack/byorg-utils@0.3.0':
-    resolution: {integrity: sha512-NJECoDkMCHQHQvxLQBo8LbQmL6tXvO8QNDIyjbVcuVu8mtsKRnDTNZQNHrXnUT58PKj6OkWDQJ+JTVxx6fFeuQ==}
+  '@callstack/byorg-utils@0.3.1':
+    resolution: {integrity: sha512-mA4mq3iyyP9Va6SG6XTfk5PBTR+OVYgbDxwe/oi8ZOylVX76d0btZZN7/ZvXrK3HviAaOZ9nKvyaMxBpM2LBYA==}
 
   '@callstack/eslint-config@15.0.0':
     resolution: {integrity: sha512-dMCqo0xA5i/u+onI2FUQIdWSEKRd/NVtd1dtmov2zn1Yg/2j56WWdt3VPhsCrIw/VYQJSr2kJi0egrNdKkZlwQ==}
@@ -541,8 +541,8 @@ packages:
     peerDependencies:
       eslint: '>=8.1.0'
 
-  '@callstack/slack-rich-text@0.3.0':
-    resolution: {integrity: sha512-gYuoVpX73ZzY0ZeACeJfR/UL4JX2LQlEMLCbVvcrbOom2JN8Ey5Q/nKMx2nIZYOWVEqQiZZr7vHpoy+q9oWUmA==}
+  '@callstack/slack-rich-text@0.3.1':
+    resolution: {integrity: sha512-GzPP8lwbYP0elQxwDttu0R0Gt3G1YyyT64/GgwLo/Jabjh548YQF2rGY2wA7rJePXu1sFAyT2ddgFL4A2WP2Rg==}
     peerDependencies:
       '@microsoft/api-extractor': ^7.47.9
       '@rslib/core': ^0.0.5
@@ -6066,10 +6066,10 @@ snapshots:
 
   '@bufbuild/protobuf@2.2.2': {}
 
-  '@callstack/byorg-core@0.3.0(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(zod@3.23.8)':
+  '@callstack/byorg-core@0.3.1(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)':
     dependencies:
       '@anthropic-ai/sdk': 0.26.1(encoding@0.1.13)
-      '@callstack/byorg-utils': 0.3.0
+      '@callstack/byorg-utils': 0.3.1
       ai: 3.4.33(openai@4.71.0(encoding@0.1.13)(zod@3.23.8))(react@18.3.1)(sswr@2.1.0(svelte@4.2.19))(svelte@4.2.19)(vue@3.5.10(typescript@5.6.3))(zod@3.23.8)
       openai: 4.71.0(encoding@0.1.13)(zod@3.23.8)
       tiktoken: 1.0.17
@@ -6083,7 +6083,7 @@ snapshots:
       - svelte
       - vue
 
-  '@callstack/byorg-utils@0.3.0': {}
+  '@callstack/byorg-utils@0.3.1': {}
 
   '@callstack/eslint-config@15.0.0(@types/eslint@9.6.1)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)(jest@29.7.0(@types/node@22.9.0)(ts-node@10.9.2(@types/node@22.9.0)(typescript@5.6.3)))(typescript@5.6.3)':
     dependencies:
@@ -6117,7 +6117,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@callstack/slack-rich-text@0.3.0(@microsoft/api-extractor@7.47.9(@types/node@22.9.0))(@rslib/core@0.0.5(@microsoft/api-extractor@7.47.9(@types/node@22.9.0))(typescript@5.6.3))(@slack/web-api@6.13.0)':
+  '@callstack/slack-rich-text@0.3.1(@microsoft/api-extractor@7.47.9(@types/node@22.9.0))(@rslib/core@0.0.5(@microsoft/api-extractor@7.47.9(@types/node@22.9.0))(typescript@5.6.3))(@slack/web-api@6.13.0)':
     dependencies:
       '@microsoft/api-extractor': 7.47.9(@types/node@22.9.0)
       '@rslib/core': 0.0.5(@microsoft/api-extractor@7.47.9(@types/node@22.9.0))(typescript@5.6.3)
