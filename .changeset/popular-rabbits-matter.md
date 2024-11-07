@@ -1,10 +1,10 @@
 ---
-'@callstack/byorg-slack': patch
-'@callstack/byorg-core': patch
-'@callstack/byorg-discord': patch
-'@callstack/document-loaders': patch
-'@callstack/slack-rich-text': patch
-'@callstack/byorg-utils': patch
+'@callstack/byorg-slack': minor
+'@callstack/byorg-core': minor
+'@callstack/byorg-discord': minor
+'@callstack/document-loaders': minor
+'@callstack/slack-rich-text': minor
+'@callstack/byorg-utils': minor
 ---
 
 moved group message formatting from core to slack package
