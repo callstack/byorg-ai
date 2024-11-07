@@ -230,13 +230,13 @@ function toNumberOrZero(n: number): number {
 }
 
 function formatResolvedEntities(entities: Record<string, unknown>): string {
-  if (Object.keys(entities).length) {
-    return `ENTITY DICTIONARY: \n
+  if (Object.keys(entities).length === 0) {
+    return '';
+  }
+
+  return `ENTITY DICTIONARY: \n
     ${Object.entries(entities)
       .map(([key, value]) => `'${key}' is '${JSON.stringify(value)}'`)
       .join('\n')}
       `;
-  } else {
-    return '';
-  }
 }
