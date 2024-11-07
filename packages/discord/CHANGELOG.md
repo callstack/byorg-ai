@@ -1,5 +1,14 @@
 # @callstack/byorg-discord
 
+## 0.3.0
+
+### Patch Changes
+
+- fe63967: added package metadata: authors, repo
+- Updated dependencies [6b49f52]
+- Updated dependencies [fe63967]
+  - @callstack/byorg-core@0.3.0
+
 ## 0.2.0
 
 ### Patch Changes

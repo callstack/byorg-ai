@@ -1,5 +1,14 @@
 # @callstack/document-loaders
 
+## 0.3.0
+
+### Patch Changes
+
+- fe63967: added package metadata: authors, repo
+- Updated dependencies [6b49f52]
+- Updated dependencies [fe63967]
+  - @callstack/byorg-utils@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes

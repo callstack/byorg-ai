@@ -1,5 +1,11 @@
 # @callstack/slack-rich-text
 
+## 0.3.0
+
+### Patch Changes
+
+- fe63967: added package metadata: authors, repo
+
 ## 0.2.0
 
 ### Patch Changes
