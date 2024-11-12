@@ -3,5 +3,25 @@
     "type": "file",
     "name": "usage",
     "label": "Usage"
+  },
+  {
+    "type": "file",
+    "name": "chat-model",
+    "label": "Chat Model"
+  },
+  {
+    "type": "file",
+    "name": "system-prompt",
+    "label": "System Prompt"
+  },
+  {
+    "type": "file",
+    "name": "context",
+    "label": "Context"
+  },
+  {
+    "type": "file",
+    "name": "plugins",
+    "label": "Plugins"
   }
 ]
