@@ -23,5 +23,20 @@
     "type": "file",
     "name": "plugins",
     "label": "Plugins"
+  },
+  {
+    "type": "file",
+    "name": "tools",
+    "label": "Tools"
+  },
+  {
+    "type": "file",
+    "name": "references",
+    "label": "References"
+  },
+  {
+    "type": "file",
+    "name": "error-handling",
+    "label": "Error Handling"
   }
 ]
