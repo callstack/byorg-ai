@@ -1,0 +1,12 @@
+[
+  {
+    "type": "file",
+    "name": "slack-usage",
+    "label": "Slack"
+  },
+  {
+    "type": "file",
+    "name": "discord-usage",
+    "label": "Discord"
+  }
+]

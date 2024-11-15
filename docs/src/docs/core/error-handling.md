@@ -5,6 +5,7 @@ In order to react for errors being thrown by the byorg, you can pass you own err
 ```js
 function handleError(error: unknown): SystemResponse {
   logger.error('Unhandled error:', error);
+  
   return {
     role: 'system',
     content: 'There was a problem with Assistant. Please try again later or contact administrator.',

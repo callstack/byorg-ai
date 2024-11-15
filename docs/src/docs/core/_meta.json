@@ -36,6 +36,11 @@
   },
   {
     "type": "file",
+    "name": "performance",
+    "label": "Performance"
+  },
+  {
+    "type": "file",
     "name": "error-handling",
     "label": "Error Handling"
   }
