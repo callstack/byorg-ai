@@ -26,14 +26,16 @@ export type Application = {
   ): Promise<ProcessMessageResult>;
 };
 
+export type ErrorHandler = (
+  error: unknown,
+  context: RequestContext,
+) => Promise<MessageResponse> | MessageResponse;
+
 export type ApplicationConfig = {
   chatModel: ChatModel;
   systemPrompt: (context: RequestContext) => Promise<string> | string;
   plugins?: ApplicationPlugin[];
-  errorHandler?: (
-    error: unknown,
-    context: RequestContext,
-  ) => Promise<MessageResponse> | MessageResponse;
+  errorHandler?: ErrorHandler;
 };
 
 export type ApplicationPlugin = {

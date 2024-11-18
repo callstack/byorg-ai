@@ -15,6 +15,7 @@ export type {
   Application,
   ApplicationConfig,
   ApplicationPlugin,
+  ErrorHandler,
   ProcessMessageOptions,
 } from './application.js';
 export { createApp } from './application.js';
