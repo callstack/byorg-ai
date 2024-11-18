@@ -5,8 +5,8 @@ export const getReferenceStorage = (): ReferenceStorage => {
   const getKey = (ref: DocumentReference) => ref.url;
 
   return {
-    addReference(ref: DocumentReference | DocumentReference[]): void {
-      const refs = Array.isArray(ref) ? ref : [ref];
+    addReferences(references: DocumentReference[]): void {
+      const refs = Array.isArray(references) ? references : [references];
 
       for (const ref of refs) {
         const refKey = getKey(ref);
@@ -26,7 +26,7 @@ export const getReferenceStorage = (): ReferenceStorage => {
 };
 
 export type ReferenceStorage = {
-  addReference(ref: DocumentReference | DocumentReference[]): void;
+  addReferences(references: DocumentReference[]): void;
   getReferences(): readonly DocumentReference[];
 };
 

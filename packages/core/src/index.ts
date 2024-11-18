@@ -19,25 +19,24 @@ export type {
 } from './application.js';
 export { createApp } from './application.js';
 
-export type { ChatModel, AssistantResponse, ModelUsage } from './ai/types.js';
+export type { Middleware, NextFunction } from './middleware.js';
+
+export type { AssistantResponse, ChatModel, ModelUsage } from './ai/types.js';
 export type { VercelChatModelAdapterOptions } from './ai/vercel.js';
 export { VercelChatModelAdapter } from './ai/vercel.js';
 
-export {
-  type Command,
-  type CommandsPluginConfig,
-  createCommandsPlugin,
-} from './plugins/commands.js';
+export type { Command, CommandsPluginConfig } from './plugins/commands.js';
+export { createCommandsPlugin } from './plugins/commands.js';
 export { loggingPlugin } from './plugins/logging.js';
 
 export type { ApplicationTool } from './tools.js';
 
-export type { ReferenceStorage, DocumentReference } from './references.js';
+export type { DocumentReference, ReferenceStorage } from './references.js';
 export { getReferenceStorage } from './references.js';
 
 export { UnsupportedAttachmentsException } from './validation.js';
 
-export { SUPPORTED_ATTACHMENT_TYPES } from './attachments.js';
+export { SUPPORTED_ATTACHMENT_TYPES, isAttachmentTypeSupported } from './attachments.js';
 
 export { PerformanceMarks } from './constants.js';
 export {
