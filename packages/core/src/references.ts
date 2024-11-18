@@ -6,17 +6,12 @@ export const getReferenceStorage = (): ReferenceStorage => {
 
   return {
     addReferences(references: DocumentReference[]): void {
-      const refs = Array.isArray(references) ? references : [references];
-
-      for (const ref of refs) {
+      for (const ref of references) {
         const refKey = getKey(ref);
-
-        if (referencesKeys.has(refKey)) {
-          continue;
+        if (!referencesKeys.has(refKey)) {
+          referencesKeys.add(refKey);
+          references.push(ref);
         }
-
-        referencesKeys.add(refKey);
-        references.push(ref);
       }
     },
     getReferences(): readonly DocumentReference[] {
