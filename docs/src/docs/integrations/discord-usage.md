@@ -1,7 +1,6 @@
-# Usage
+# Integrating with Discord
 
-In byorg we also implemented functions that integrate your app with Discord.
-To use it you just need to use the `createDiscordApp` function, and pass it byorg app instance.
+Byorg provides built-in functionality to integrate your application with Discord. To set this up, use the `createDiscordApp` function and provide the necessary parameters.
 
 ## Endpoint mode
 
@@ -16,6 +15,6 @@ const discord = createDiscordApp({
 });
 ```
 
-:::danger
+:::warn
 Discord implementation is still in progress, treat it as experimental.
 :::

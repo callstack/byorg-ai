@@ -7,9 +7,11 @@ Plugins are your way to modify the context before it reaches the inference and A
 Those two concepts are similar, but have one important difference.
 
 - Middlewares are run before response to user
-- Effects are run after
+- Your middleware can be run before, or after call to `next` to perform actions after or before getting response from AI.
+- Effects are run after giving response to user
 
 As an example, because of that, you can use Effects for gathering analytics about usage, or log to DB without addind any waiting time for the user.
+Be aware that until all Middlewares finish processing, sending response to user is blocked.
 
 ## Middleware Example
 
@@ -67,4 +69,29 @@ Now that we wrote our plugins, let's connect them to the app:
     ]
     systemPrompt,
   });
+```
+
+Order of plugins is important! Depending on call to `next` they are called:
+
+- top-down before call to `next`
+- down-top after call to `next`
+
+## Midleware early return
+
+Your middleware can also cause you application to break the execution chain sooner.
+This stops execution of middleware scheduled after.
+
+```js
+import { ApplicationPlugin, MessageResponse } from '@callstack/byorg-core';
+
+const flowBreakingPlugin: Promise<MessageResponse> = {
+  name: 'breaks-flow',
+  middleware: async (context, next): Promise<MessageResponse> => {
+    // Breaks the middleware chain
+    return {
+      role: 'system';
+      content: "AI Assistant is unvailable now!";
+    };
+  },
+};
 ```

@@ -19,7 +19,7 @@ Here is step by step how to start with byorg.
 
   const openAiProvider = createOpenAI({
   apiKey: 'your-api-key',
-  compatibility: 'strict',
+  compatibility: 'strict', // strict mode, enable when using the OpenAI API
   });
 
   const openAiModel = openAiProvider.languageModel(LANGUAGE_MODEL);
@@ -33,7 +33,7 @@ Here is step by step how to start with byorg.
   import { RequestContext } from '@callstack/byorg-core';
 
   const systemPrompt = (context: RequestContext): Promise<string> | string => {
-    return "You are an AI assistant";
+    return "You are a helpful AI assistant named Cassandra";
   };
   ```
   ### Instantiate an app

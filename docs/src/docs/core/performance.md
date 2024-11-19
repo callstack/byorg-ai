@@ -17,7 +17,8 @@ const slowPlugin: Promise<MessageResponse> = {
 };
 ```
 
-After gathering your measures, you can access them through the same object
+After gathering your measures, you can access them through the same object.
+Because performance tracking needs all processes to finish, it uses `effect` instead of `middleware`, since it runs after response is done.
 
 ```js
 const analyticsPlugin: Promise<MessageResponse> = {
@@ -32,6 +33,7 @@ async function analyticsEffect(context: RequestContext, response: MessageRespons
 
 ## Measures vs Marks
 
+This concept comes from [Web Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance).
 Marks are just named 'sequences' for the performance tool to measure.
 Let's say that you have a tool for your AI, and you'd like to check how it performs.
 Issue might be that it's being triggered multiple times by AI. For that reason

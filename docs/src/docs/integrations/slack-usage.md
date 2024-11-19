@@ -1,9 +1,11 @@
-# Usage
+## Integrating with Slack
 
-In byorg we also implemented functions that integrate your app with Slack.
-To use it you just need to use the `createSlackApp` function, and pass required variables.
+Byorg provides built-in functionality to integrate your application with Slack. To set this up, use the `createSlackApp` function and provide the necessary parameters.
 
-## Endpoint mode
+## Http endpoint mode
+
+In this mode you use SlackApp to receive Slack event objects directly.
+Here's a [tutorial](https://cloud.google.com/functions/docs/tutorials/slack) on setting up a Google Cloud Function with event receiver.
 
 ```js
 const app = createApp({
@@ -28,8 +30,7 @@ slack.processEvent(event);
 
 ## Websocket mode
 
-You can also run the slack app in websocket mode. To do that you need to additionally pass
-a `websocket` boolean variable as true, and run slack app with `start` function.
+Alternatively, you can use [Slack SDK](https://tools.slack.dev/bolt-js/concepts/socket-mode) ability to connect to Slack API using WebSockets. This can be helpful in cases when you want to setup your server in a setting without public IP connection and/or for development purposes.
 
 ```js
 const slack = createSlackApp({
@@ -45,21 +46,17 @@ slack.start();
 
 ## Types
 
-In order to handle types correctly, you also need to extend the context of byorg.
+When using byorg-slack package, the context.extras field will contain various Slack-related fields.
 
 ```js
 declare module '@callstack/byorg-core' {
   interface MessageRequestExtras {
     // Set by "byorg-slack" plugin
-    threadTs?: string;
-    messageTs?: string;
-    conversationMode?: ConversationMode;
+    threadTs?: string; // Thread timestamp (used as id)
+    messageTs?: string; // Message timestamp (used as id)
+    conversationMode?: ConversationMode; // Whether message was a `public_channel` or `direct`
   }
 }
 
 export {};
 ```
-
-:::info
-Our slack app distinguishes two conversation modes: `public_channel` and `direct`
-:::

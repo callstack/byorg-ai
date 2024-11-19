@@ -2,29 +2,16 @@
 
 ## Providers and Adapter
 
-In order to make development of our framework faster, we decided to use [Vercel AI SDK](https://sdk.vercel.ai/docs/introduction) as an interface for handling LLM models.
-
-[Here](https://sdk.vercel.ai/providers/ai-sdk-providers) are all providers integrated with Vercel.
+You can use any AI provider supported by Vercel's [AI SDK](https://sdk.vercel.ai/providers/ai-sdk-providers). This includes both LLM-as-a-service providers like OpenAI, Anthropic, Mistral, etc, as well as locally hosted LLMs. We are open to extending support also to other types of chat models, e.g. LangChain's [runnables](https://js.langchain.com/docs/how_to/streaming).
 
 ### Providers Examples
 
 ```js
 import { createOpenAI } from '@ai-sdk/openai';
-import { createAzure } from '@ai-sdk/azure';
-import { createMistral } from '@ai-sdk/mistral';
-
-const azureProvider = createAzure({
-  resourceName: 'your-resource-name',
-  apiKey: 'your-api-key',
-});
 
 const openAiProvider = createOpenAI({
   apiKey: 'your-api-key',
   compatibility: 'strict',
-});
-
-const mistralProvider = createMistral({
-  // custom settings
 });
 ```
 
@@ -35,14 +22,6 @@ import { VercelChatModelAdapter } from '@callstack/byorg-core';
 
 const openAiChatModel = new VercelChatModelAdapter({
   languageModel: openAiModel,
-});
-
-const vercelChatModel = new VercelChatModelAdapter({
-  languageModel: azureProvider,
-});
-
-const mistralChatModel = new VercelChatModelAdapter({
-  languageModel: mistralProvider,
 });
 ```
 
