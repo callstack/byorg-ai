@@ -26,11 +26,16 @@ export type Application = {
   ): Promise<ProcessMessageResult>;
 };
 
+export type ErrorHandler = (
+  error: unknown,
+  context: RequestContext,
+) => Promise<MessageResponse> | MessageResponse;
+
 export type ApplicationConfig = {
   chatModel: ChatModel;
   systemPrompt: (context: RequestContext) => Promise<string> | string;
   plugins?: ApplicationPlugin[];
-  errorHandler?: (error: unknown) => Promise<MessageResponse> | MessageResponse;
+  errorHandler?: ErrorHandler;
 };
 
 export type ApplicationPlugin = {
@@ -130,7 +135,7 @@ export function createApp(config: ApplicationConfig): Application {
         performance.markEnd(PerformanceMarks.middlewareAfterHandler);
       } catch (error) {
         performance.markStart(PerformanceMarks.errorHandler);
-        response = await errorHandler(error);
+        response = await errorHandler(error, context);
         performance.markEnd(PerformanceMarks.errorHandler);
       } finally {
         performance.markEnd(PerformanceMarks.processMessages);
@@ -151,7 +156,7 @@ export function createApp(config: ApplicationConfig): Application {
   };
 }
 
-function defaultErrorHandler(error: unknown): SystemResponse {
+function defaultErrorHandler(error: unknown, _context: RequestContext): SystemResponse {
   logger.error('Error while processing message:', error);
 
   return {
