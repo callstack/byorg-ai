@@ -1,7 +1,6 @@
 # Error handling
 
-Error handler receives the error object, and returns message that should be sent back to the user.
-In order to react for errors being thrown by the byorg, you can pass you own error handler.
+The error handler in byorg.ai is responsible for processing error objects and returning messages that are sent back to the user. You can customize the error handling by providing your own error handler function. This allows you to define specific reactions to errors and deliver appropriate feedback to users.
 
 ```js
 function handleError(error: unknown): SystemResponse {
@@ -21,4 +20,4 @@ const app = createApp({
 });
 ```
 
-Error handler allows you to implement custom reaction to thrown error and send feedback to user.
+By implementing a custom error handler, you can tailor the user experience by providing meaningful responses to errors encountered within the byorg framework.

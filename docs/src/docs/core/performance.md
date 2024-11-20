@@ -1,6 +1,6 @@
 # Performance
 
-If you'd like to test your application performance, you can use `performance` object from the context.
+To test your application's performance, you can use the performance object available in the context.
 
 ```js
 const slowPlugin: Promise<MessageResponse> = {
@@ -17,8 +17,7 @@ const slowPlugin: Promise<MessageResponse> = {
 };
 ```
 
-After gathering your measures, you can access them through the same object.
-Because performance tracking needs all processes to finish, it uses `effect` instead of `middleware`, since it runs after response is done.
+After collecting your performance data, you can access it through the same performance object. Performance tracking requires all processes to complete, so it uses effect instead of middleware, as it runs after the response is finalized.
 
 ```js
 const analyticsPlugin: Promise<MessageResponse> = {
@@ -40,15 +39,15 @@ Issue might be that it's being triggered multiple times by AI. For that reason
 one mark can be a part of multiple measures.
 Single measure is constructed of two marks: `start` and `end`.
 
+This concept is inspired by the [Web Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance). Marks are essentially named sequences that the performance tool uses to measure execution time. For instance, if you have a tool for your AI and want to evaluate its performance, you might find it triggered multiple times by the AI. Therefore, a single mark can be part of multiple measures. A measure is constructed using two marks: `start` and `end`.
+
 :::info
-
-You can also access all measures and marks with `getMarks` and `getMeasures`
-
+You can also access all marks and measures using `getMarks` and `getMeasures`
 :::
 
 ## Default measures
 
-byorg is gathering performance data out of the box.
+Byorg automatically gathers performance data. Middleware measures are collected in two separate phases: before handling the response and after it.
 
 ```js
 export const PerformanceMarks = {
@@ -60,5 +59,3 @@ export const PerformanceMarks = {
   errorHandler: 'errorHandler',
 } as const;
 ```
-
-Middleware measures are gathered in two separate sections: before handling the response, and after that.

@@ -1,17 +1,13 @@
 # References
 
-References are a way of informing bout source of information retrieved by a tool call.
-When tool call is triggered, you can add references to context, and later use those entries
-in a plugin to provide user with referenced pages etc.
-References are a part of the context.
+References provide information about the source of data retrieved by a tool call.
+When a tool call is triggered, you can add references to the context and later use these entries in a plugin to provide users with referenced pages or other relevant information. References are part of the context.
 
 :::info
-
-References are not being added for AI in any way. Unless you implement it that way.
-
+References are not automatically added for the AI. You need to implement this functionality if needed.
 :::
 
-As an example, we will prepare middleware that will add relevant weather information.
+Let's create middleware that adds relevant weather information to the context.
 
 ```js
 async function queryWeather(
@@ -47,12 +43,12 @@ const cityWeatherPlugin: ApplicationPlugin = {
 };
 ```
 
-That way, AI will receive information about requested city, and
-context will get an information about the source of information.
+In this example, the AI receives information about the requested city, and the context includes information about the source of this data.
 
-references object has two functions `getReferences` and `addReference`
-If you'd like to present user with informations about references, you need to add
-them manually to the response.
+## Using References
+
+The `references` object provides two functions: `getReferences` and `addReference`.
+If you want to present users with information about references, you need to manually add them to the response.
 
 ```js
 export const referencesPlugin: ApplicationPlugin = {
@@ -70,3 +66,5 @@ export const referencesPlugin: ApplicationPlugin = {
   },
 };
 ```
+
+By using these functions, you can ensure that users are informed about the sources of the information they receive.

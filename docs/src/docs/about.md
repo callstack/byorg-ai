@@ -1,16 +1,12 @@
-# About byorg-ai
+# About byorg.ai
 
 ## Introduction
 
-Byorg-ai is a framework for rapid build and deployment of AI assistants inside companies and organizations.
+byorg.ai is a framework designed for the rapid development and deployment of AI assistants within companies and organizations.
 
 ## Supported Integrations
 
 - Slack
 - Discord
 
-:::info
-
-Byorg-ai allows you to use a large number of LLMs through Vercel [AI SDK](link here). Similarly you can host byorg-ai apps in various cloud of local options. We provide examples for using some popular options.
-
-:::
+byorg.ai supports a wide range of large language models (LLMs) via the Vercel [AI SDK](https://sdk.vercel.ai/docs/introduction). You can host byorg.ai applications on various cloud platforms or local environments. We provide examples for some popular hosting options.

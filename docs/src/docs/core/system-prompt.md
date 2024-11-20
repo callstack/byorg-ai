@@ -1,19 +1,19 @@
 # System Prompt
 
-`createApp` function requires a `systemPrompt` fuction to work properly.
-System prompt is a string with "initial" description of situation for AI.
-It should contain information like Assistant personality, name, purpose and available tools.
-System prompt can also contain dynamic values like current date or hour.
-You can think about system prompt as your Assistant 'personality' and guidelines.
+The `createApp` function requires a `systemPrompt` function to operate correctly.
+The system prompt is a string that provides an "initial" description of the situation for the AI.
+It should include details such as the assistant's personality, name, purpose, and available tools.
+The system prompt can also incorporate dynamic values like the current date or time.
+Think of the system prompt as your assistant's "personality" and guidelines
 
 ## Why a function?
 
-Byorg requires a function for generating a system prompt, because each message can require a different system prompt.
-Thanks to this, you can implement your own logic for changing system prompt in run time.
+Byorg requires a function to generate the system prompt because each message might need a different prompt.
+This allows you to implement custom logic to modify the system prompt at runtime.
 
 ## Example
 
-Here is an example that will add current date and user's name to conversation.
+Here is an example that adds the current date and the user's name to the conversation:
 
 ```js
 export const systemPrompt = (context: RequestContext): Promise<string> | string => {
@@ -26,5 +26,5 @@ export const systemPrompt = (context: RequestContext): Promise<string> | string 
 };
 ```
 
-As you see, `systemPrompt` function takes a `context` as parameter. Context is an object containing
-a informations about current conversation. We'll dive deeper into that topic in next section.
+As you can see, the `systemPrompt` function takes a `context` parameter.
+The context is an object containing information about the current conversation. We’ll explore this topic further in the next section.

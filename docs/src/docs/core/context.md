@@ -1,10 +1,10 @@
 # Context
 
-Context is an object that is holding informations about the currently processed message. It allows you to change the behaviour of your assistant in the runtime, or to change the flow of processed message.
+The `context` object holds information about the currently processed message. It allows you to modify the behavior of your assistant at runtime or alter the message processing flow.
 
-Context can be changed by [middlewares](./plugins.md) during the message processing flow to implement highly-flexible logic or rules (e.g. authentication, RAG, etc)
+`Context` can be modified by [middlewares](./plugins.md) during the message processing flow to implement highly flexible logic or rules (e.g., authentication, RAG, etc.).
 
-Here are properties that you can find in the context:
+### Properties in Context
 
 ```js
 export type RequestContext = {
@@ -37,7 +37,7 @@ export type RequestContext = {
 };
 ```
 
-In order to add typing for your own properties to the context, you need to create a file with type and override the typing.
+To add typing for your custom properties to the context, create a file with the type definition and override the typing.
 
 ```js
 declare module '@callstack/byorg-core' {
@@ -53,12 +53,10 @@ export {};
 ```
 
 :::warning
-
-All custom properties must be an optional as current context creation doesn't support default values for custom objects.
-
+All custom properties must be optional, as the current context creation does not support default values for custom objects.
 :::
 
-After setting extras, you can get to it from context object:
+After setting extras, you can access them from the context object:
 
 ```js
 export const systemPrompt = (context: RequestContext): Promise<string> | string => {
@@ -70,4 +68,4 @@ export const systemPrompt = (context: RequestContext): Promise<string> | string 
 };
 ```
 
-Now we'll go through the concept of `plugins` to get an understanding of how to modify the `context`
+Next, we’ll explore the concept of `plugins` to understand how to modify the `context`.

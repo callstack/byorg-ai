@@ -1,21 +1,23 @@
 # Plugins
 
-Plugins are your way to modify the context before it reaches the inference and AI response phase. Each plugin consists of a name, optional middleware and optional effects.
+Plugins allow you to modify the context before it reaches the inference and AI response phase. Each plugin consists of a name, optional middleware, and optional effects.
 
 ## Middleware and Effects
 
-Those two concepts are similar, but have one important difference.
+These two concepts are similar but have an important difference:
 
 - Middlewares are run before response to user
 - Your middleware can be run before, or after call to `next` to perform actions after or before getting response from AI.
 - Effects are run after giving response to user
 
-As an example, because of that, you can use Effects for gathering analytics about usage, or log to DB without addind any waiting time for the user.
-Be aware that until all Middlewares finish processing, sending response to user is blocked.
+- Middlewares run before the response is sent to the user. They can execute actions either before or after calling next, allowing you to perform tasks before or after receiving a response from the AI.
+- Effects run after the response is delivered to the user. They are useful for tasks like gathering analytics or logging to a database without adding any waiting time for the user.
+
+Note that the response to the user is blocked until all middlewares finish processing.
 
 ## Middleware Example
 
-Let's create a middleware, that will enrich the context for our system prompt function.
+Let's create a middleware that enriches the context for our system prompt function.
 
 ```js
 import { ApplicationPlugin, MessageResponse } from '@callstack/byorg-core';
@@ -35,7 +37,7 @@ const isAdminPlugin: Promise<MessageResponse> = {
 
 ## Effect example
 
-Also, let's create an effect that will be run after we get a response from AI and process it. If the user is an admin, or the response ended with an error we'll do nothing, otherwise we will increase the messages count for a user.
+Now, let's create an effect that runs after receiving a response from the AI. If the user is an admin or the response ends with an error, it does nothing. Otherwise, it increases the message count for the user.
 
 ```js
 import { MessageResponse } from '@callstack/byorg-core';
@@ -58,7 +60,7 @@ async function counterEffect(context: RequestContext, response: MessageResponse)
 
 ## Connecting Plugins
 
-Now that we wrote our plugins, let's connect them to the app:
+Once you've written your plugins, connect them to the app:
 
 ```js
   const app = createApp({
@@ -71,15 +73,14 @@ Now that we wrote our plugins, let's connect them to the app:
   });
 ```
 
-Order of plugins is important! Depending on call to `next` they are called:
+The order of plugins is important! Depending on the call to `next`, they are executed:
 
-- top-down before call to `next`
-- down-top after call to `next`
+- Top-down before the call to `next`
+- Bottom-up after the call to `next`
 
 ## Midleware early return
 
-Your middleware can also cause you application to break the execution chain sooner.
-This stops execution of middleware scheduled after.
+Your middleware can also break the execution chain early, stopping the execution of any subsequent middleware.
 
 ```js
 import { ApplicationPlugin, MessageResponse } from '@callstack/byorg-core';
@@ -98,6 +99,5 @@ const flowBreakingPlugin: Promise<MessageResponse> = {
 
 ## Pending effects
 
-When you trigger `processMessages` on byorg app, one of returned values are `pendingEffects`.
-Thanks to that you can wait for them to finish execution. It is used to avoid cases in which
-application is shutting down prematurely (e.g. serverless functions)
+When you trigger `processMessages` on a byorg app, one of the returned values is `pendingEffects`.
+This allows you to wait for them to finish execution, which is useful to prevent the application from shutting down prematurely (e.g., in serverless functions).

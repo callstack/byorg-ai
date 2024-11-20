@@ -1,9 +1,8 @@
 # Tools
 
-You can extend capabilities of your assistant, by providing it with tools.
-Tools are functions, that are attached to the request to AI. After that request
-is received, AI can decide to use those tools to either enrich the context, fetch more data
-or save some information.
+You can extend the capabilities of your assistant by providing it with tools.
+Tools are functions attached to the AI request. Once the request is received, the AI can decide to use these tools to enrich the context,
+fetch more data, or save information.
 
 :::info
 OpenAI has implemented tools, but not all AI providers do.
@@ -14,6 +13,9 @@ OpenAI has implemented tools, but not all AI providers do.
 First lets start by implementing the tool function. There are two inputs for it `params` that are decided
 by the AI and context that is passed by byorg. Tool function has to return a string, as the information
 returned by it will be then passed back to AI as an 'addition' to system prompt.
+
+To start, implement the tool function. It takes two inputs: `params`, which are determined by the AI, and `context`, which is passed by byorg.
+The tool function must return a string, as this information will be passed back to the AI as an addition to the system prompt.
 
 ```js
 
@@ -27,8 +29,7 @@ async function queryUsers(params: { query: string }, context: RequestContext): P
 }
 ```
 
-This function needs to be later described for the AI, so it will have a better
-understanding of when to use it and for what purpose.
+Next, describe this function for the AI to help it understand when and how to use it.
 
 ```js
 import z from 'zod';
@@ -48,8 +49,7 @@ const queryUsersTool: ApplicationTool = {
 };
 ```
 
-Once you have the function implemented and described for AI, you need to wrap it into
-our plugin system and connect it to the app.
+Once the function is implemented and described, wrap it into the plugin system and connect it to the app.
 
 ```js
 const toolsPlugin: ApplicationPlugin = {
@@ -66,8 +66,7 @@ const app = createApp({
 });
 ```
 
-Tools are a great place to implement embedding for inserts or other RAG functionalities.
+Tools are an excellent place to implement embedding for inserts or other RAG (Retrieval-Augmented Generation) functionalities.
 
-Your tools might attach data from a specific source. In case you'd like to inform
-your users about the source of data, you can use `references` from context object.
-We'll discuss that next.
+Your tools might attach data from a specific source. If you want to inform users about the data source, you can use `references` from the context object.
+We’ll discuss that next.
