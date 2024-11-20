@@ -1,8 +1,9 @@
 # References
 
-This is a part of the context. References are objects contained in a list.
-At any point of the flow you can use that information to either
-inform the users, log most used sources, or anything else.
+References are a way of informing bout source of information retrieved by a tool call.
+When tool call is triggered, you can add references to context, and later use those entries
+in a plugin to provide user with referenced pages etc.
+References are a part of the context.
 
 :::info
 
@@ -50,3 +51,22 @@ That way, AI will receive information about requested city, and
 context will get an information about the source of information.
 
 references object has two functions `getReferences` and `addReference`
+If you'd like to present user with informations about references, you need to add
+them manually to the response.
+
+```js
+export const referencesPlugin: ApplicationPlugin = {
+  name: 'references',
+  middleware: async (context, next): Promise<MessageResponse> => {
+    // Continue middleware chain
+    const response = await next();
+
+    const references = context.references.getReferences();
+
+    return {
+      ...response,
+      content: `${response.content}${formatReferencesAnnotation(references)}`,
+    };
+  },
+};
+```

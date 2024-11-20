@@ -15,6 +15,11 @@ const discord = createDiscordApp({
 });
 ```
 
-:::warn
+:::warning
 Discord implementation is still in progress, treat it as experimental.
 :::
+
+<!---
+ToDo
+Add additional details how users can run this stuff
+-->

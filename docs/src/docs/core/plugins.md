@@ -95,3 +95,9 @@ const flowBreakingPlugin: Promise<MessageResponse> = {
   },
 };
 ```
+
+## Pending effects
+
+When you trigger `processMessages` on byorg app, one of returned values are `pendingEffects`.
+Thanks to that you can wait for them to finish execution. It is used to avoid cases in which
+application is shutting down prematurely (e.g. serverless functions)

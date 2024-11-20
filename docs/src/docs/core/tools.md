@@ -5,6 +5,10 @@ Tools are functions, that are attached to the request to AI. After that request
 is received, AI can decide to use those tools to either enrich the context, fetch more data
 or save some information.
 
+:::info
+OpenAI has implemented tools, but not all AI providers do.
+:::
+
 ## Adding tools
 
 First lets start by implementing the tool function. There are two inputs for it `params` that are decided
@@ -17,13 +21,7 @@ async function queryUsers(params: { query: string }, context: RequestContext): P
   const { query } = params;
   const { references } = context;
 
-  const embedding = await getEmbedding(query);
-
-  if (embedding == null) {
-    throw new Error('queryUsers: failed to generate embeddings from API');
-  }
-
-  const users = await getMatchingusers(embedding);
+  const users = await getMatchingusers(query);
 
   return formatUsersResponse(users);
 }
@@ -67,6 +65,8 @@ const app = createApp({
   systemPrompt,
 });
 ```
+
+Tools are a great place to implement embedding for inserts or other RAG functionalities.
 
 Your tools might attach data from a specific source. In case you'd like to inform
 your users about the source of data, you can use `references` from context object.
