@@ -1,0 +1,9 @@
+{
+  "root": true,
+  "extends": ["@callstack/eslint-config/node", "prettier"],
+  "settings": {
+    "import/resolver": {
+      "typescript": true
+    }
+  }
+}
