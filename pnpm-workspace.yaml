@@ -5,4 +5,3 @@ packages:
 catalog:
   '@microsoft/api-extractor': '^7.47.9'
   '@rslib/core': '^0.0.5'
-  'zod': ^3.23.8

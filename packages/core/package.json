@@ -29,19 +29,18 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.26.1",
     "@callstack/byorg-utils": "0.3.1",
-    "ai": "^3.4.33",
-    "openai": "^4.71.0",
-    "tiktoken": "^1.0.17",
     "ts-regex-builder": "^1.8.2"
   },
   "peerDependencies": {
-    "zod": "catalog:"
+    "ai": "^4.0.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "ai": "^4.0.3",
     "@microsoft/api-extractor": "catalog:",
     "@rslib/core": "catalog:",
-    "vitest": "^2.1.3"
+    "vitest": "^2.1.3",
+    "zod": "^3.23.8"
   }
 }
