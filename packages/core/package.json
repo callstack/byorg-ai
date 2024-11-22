@@ -30,11 +30,11 @@
   },
   "dependencies": {
     "@callstack/byorg-utils": "0.3.1",
-    "ts-regex-builder": "^1.8.2"
+    "ts-regex-builder": "^1.8.2",
+    "zod": "^3.23.8"
   },
   "peerDependencies": {
-    "ai": "^4.0.3",
-    "zod": "^3.23.8"
+    "ai": "^4.0.3"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "catalog:",
