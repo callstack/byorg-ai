@@ -13,6 +13,7 @@ import {
   charRange,
   choiceOf,
   digit,
+  endOfString,
   oneOrMore,
   optional,
   repeat,
@@ -51,6 +52,9 @@ const mentionRegex = buildRegExp([
 
 // Looks for mentions and emojis in text
 const specialFormattingRegex = buildRegExp(capture([choiceOf(mentionRegex, emojiRegex)]));
+
+// Checks if string is a codespan
+const codespanRegex = buildRegExp([startOfString, '`', oneOrMore(any), '`', endOfString]);
 
 // Extracts type and value of a mention
 const mentionPartsRegex = buildRegExp(
@@ -149,6 +153,8 @@ export const renderTopLevelTokens = (token: Token, richTextBlocksBuilder: RichTe
   }
 };
 
+const stylableElementTypes = ['channel', 'link', 'text', 'user', 'usergroup'];
+
 // Recursively handles children tokens
 export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
   const result: RichTextElement[] = [];
@@ -162,9 +168,14 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
     }
 
     children.forEach((element) => {
+      const isStylable = stylableElementTypes.includes(element.type);
+
       switch (token.type) {
         case 'em':
-          element.style = { ...element.style, italic: true };
+          if (isStylable) {
+            element.style = { ...element.style, italic: true };
+          }
+
           break;
 
         case 'codespan': {
@@ -172,7 +183,10 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
             element.text = stripCodeSpan(element.text).trim();
           }
 
-          element.style = { ...element.style, code: true };
+          if (isStylable) {
+            element.style = { ...element.style, code: true };
+          }
+
           break;
         }
 
@@ -181,17 +195,26 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
             element.text = token.text.trim();
           }
 
-          element.style = { ...element.style, code: true };
+          if (isStylable) {
+            element.style = { ...element.style, code: true };
+          }
+
           break;
         }
 
         case 'del':
-          element.style = { ...element.style, strike: true };
+          if (isStylable) {
+            element.style = { ...element.style, strike: true };
+          }
+
           break;
 
         case 'heading':
         case 'strong':
-          element.style = { ...element.style, bold: true };
+          if (isStylable) {
+            element.style = { ...element.style, bold: true };
+          }
+
           break;
 
         case 'link':
@@ -220,6 +243,10 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
 
 export const renderRawTextToken = (rawText: string): RichTextElement[] => {
   const result: RichTextElement[] = [];
+
+  if (rawText.match(codespanRegex)) {
+    return [{ type: 'text', text: rawText }];
+  }
 
   const texts = rawText.split(specialFormattingRegex).filter((text) => text.length);
 
