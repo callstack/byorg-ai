@@ -1,5 +1,15 @@
 # @callstack/byorg-discord
 
+## 0.4.0
+
+### Patch Changes
+
+- Updated dependencies [e4c7a51]
+- Updated dependencies [dd789a6]
+- Updated dependencies [17863b6]
+- Updated dependencies [d8c092c]
+  - @callstack/byorg-core@0.4.0
+
 ## 0.3.1
 
 ### Patch Changes
