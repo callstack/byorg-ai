@@ -9,7 +9,8 @@
     "test": "turbo test",
     "typecheck": "turbo run typecheck",
     "validate": "turbo build --force && turbo run typecheck test --force && pnpm lint",
-    "publish-packages": "./scripts/release.sh"
+    "release:version": "./scripts/release-version.sh",
+    "release:publish": "./scripts/release-publish.sh"
   },
   "devDependencies": {
     "@callstack/eslint-config": "^15.0.0",
