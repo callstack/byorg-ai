@@ -1,16 +1,17 @@
 import { Client } from '@notionhq/client';
 import { requireEnv } from '@callstack/byorg-utils';
 
-let notionClient: Client;
+let notionClient: Client | null = null;
 
-export function getNotionClient() {
+export function getNotionClient(): Client {
   if (notionClient) {
     return notionClient;
   }
 
   const notionToken = requireEnv('NOTION_TOKEN');
-
-  return new Client({
+  notionClient = new Client({
     auth: notionToken,
   });
+
+  return notionClient;
 }
