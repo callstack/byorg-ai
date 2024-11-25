@@ -47,7 +47,8 @@ function fetchAttachments(
 }
 
 export function formatGroupMessage(message: Message): string {
-  if (!message.senderId) {
+  //  Do not add sender id for assistant messages, as LLMs tend repeat the format of their previous messages.
+  if (!message.senderId || message.role === 'assistant') {
     return message.content;
   }
 

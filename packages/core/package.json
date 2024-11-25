@@ -40,7 +40,6 @@
     "@microsoft/api-extractor": "catalog:",
     "@rslib/core": "catalog:",
     "ai": "^4.0.3",
-    "vitest": "^2.1.5",
-    "zod": "^3.23.8"
+    "vitest": "catalog:"
   }
 }
