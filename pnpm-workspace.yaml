@@ -5,3 +5,4 @@ packages:
 catalog:
   '@microsoft/api-extractor': '^7.47.12'
   '@rslib/core': '^0.1.0'
+  'vitest': '^2.1.5'
