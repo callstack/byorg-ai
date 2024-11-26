@@ -3,6 +3,7 @@ import type {
   RichTextLink,
   RichTextPreformatted,
   RichTextSection,
+  RichTextStyleable,
 } from '@slack/web-api';
 import type { Token, Tokens } from 'marked';
 import {
@@ -13,28 +14,21 @@ import {
   charRange,
   choiceOf,
   digit,
+  endOfString,
   oneOrMore,
   optional,
   repeat,
   startOfString,
+  word,
   zeroOrMore,
 } from 'ts-regex-builder';
 import type { RichTextBlockBuilder } from './markdown-to-block.js';
 
 // Captures emojis in text :fire:
-const emojiRegex = buildRegExp(
-  [
-    ':',
-    oneOrMore(charClass(charRange('a', 'z')), {
-      greedy: false,
-    }),
-    ':',
-  ],
-  {
-    global: true,
-    ignoreCase: true,
-  },
-);
+const emojiRegex = buildRegExp([':', oneOrMore(word), ':'], {
+  global: true,
+  ignoreCase: true,
+});
 
 // Nobody needs more than 2 new lines in text
 const multipleNewLinesRegex = buildRegExp(
@@ -51,6 +45,9 @@ const mentionRegex = buildRegExp([
 
 // Looks for mentions and emojis in text
 const specialFormattingRegex = buildRegExp(capture([choiceOf(mentionRegex, emojiRegex)]));
+
+// Checks if string is a codespan
+const codespanRegex = buildRegExp([startOfString, '`', oneOrMore(any), '`', endOfString]);
 
 // Extracts type and value of a mention
 const mentionPartsRegex = buildRegExp(
@@ -149,6 +146,17 @@ export const renderTopLevelTokens = (token: Token, richTextBlocksBuilder: RichTe
   }
 };
 
+const stylableElementTypes = ['channel', 'link', 'text', 'user', 'usergroup'];
+
+function applyStyleIfAllowed(element: RichTextElement, style: RichTextStyleable['style']) {
+  const isAllowed = stylableElementTypes.includes(element.type);
+  if (!isAllowed) {
+    return;
+  }
+
+  element.style = { ...element.style, ...style };
+}
+
 // Recursively handles children tokens
 export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
   const result: RichTextElement[] = [];
@@ -164,7 +172,8 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
     children.forEach((element) => {
       switch (token.type) {
         case 'em':
-          element.style = { ...element.style, italic: true };
+          applyStyleIfAllowed(element, { italic: true });
+
           break;
 
         case 'codespan': {
@@ -172,7 +181,7 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
             element.text = stripCodeSpan(element.text).trim();
           }
 
-          element.style = { ...element.style, code: true };
+          applyStyleIfAllowed(element, { code: true });
           break;
         }
 
@@ -181,17 +190,20 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
             element.text = token.text.trim();
           }
 
-          element.style = { ...element.style, code: true };
+          applyStyleIfAllowed(element, { code: true });
+
           break;
         }
 
         case 'del':
-          element.style = { ...element.style, strike: true };
+          applyStyleIfAllowed(element, { strike: true });
+
           break;
 
         case 'heading':
         case 'strong':
-          element.style = { ...element.style, bold: true };
+          applyStyleIfAllowed(element, { bold: true });
+
           break;
 
         case 'link':
@@ -220,6 +232,10 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
 
 export const renderRawTextToken = (rawText: string): RichTextElement[] => {
   const result: RichTextElement[] = [];
+
+  if (rawText.match(codespanRegex)) {
+    return [{ type: 'text', text: rawText }];
+  }
 
   const texts = rawText.split(specialFormattingRegex).filter((text) => text.length);
 
