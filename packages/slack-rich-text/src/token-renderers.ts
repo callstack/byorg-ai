@@ -3,6 +3,7 @@ import type {
   RichTextLink,
   RichTextPreformatted,
   RichTextSection,
+  RichTextStyleable,
 } from '@slack/web-api';
 import type { Token, Tokens } from 'marked';
 import {
@@ -18,24 +19,16 @@ import {
   optional,
   repeat,
   startOfString,
+  word,
   zeroOrMore,
 } from 'ts-regex-builder';
 import type { RichTextBlockBuilder } from './markdown-to-block.js';
 
 // Captures emojis in text :fire:
-const emojiRegex = buildRegExp(
-  [
-    ':',
-    oneOrMore(charClass(charRange('a', 'z')), {
-      greedy: false,
-    }),
-    ':',
-  ],
-  {
-    global: true,
-    ignoreCase: true,
-  },
-);
+const emojiRegex = buildRegExp([':', oneOrMore(word), ':'], {
+  global: true,
+  ignoreCase: true,
+});
 
 // Nobody needs more than 2 new lines in text
 const multipleNewLinesRegex = buildRegExp(
@@ -155,6 +148,15 @@ export const renderTopLevelTokens = (token: Token, richTextBlocksBuilder: RichTe
 
 const stylableElementTypes = ['channel', 'link', 'text', 'user', 'usergroup'];
 
+function applyStyleIfAllowed(element: RichTextElement, style: RichTextStyleable['style']) {
+  const isAllowed = stylableElementTypes.includes(element.type);
+  if (!isAllowed) {
+    return;
+  }
+
+  element.style = { ...element.style, ...style };
+}
+
 // Recursively handles children tokens
 export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
   const result: RichTextElement[] = [];
@@ -168,13 +170,9 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
     }
 
     children.forEach((element) => {
-      const isStylable = stylableElementTypes.includes(element.type);
-
       switch (token.type) {
         case 'em':
-          if (isStylable) {
-            element.style = { ...element.style, italic: true };
-          }
+          applyStyleIfAllowed(element, { italic: true });
 
           break;
 
@@ -183,10 +181,7 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
             element.text = stripCodeSpan(element.text).trim();
           }
 
-          if (isStylable) {
-            element.style = { ...element.style, code: true };
-          }
-
+          applyStyleIfAllowed(element, { code: true });
           break;
         }
 
@@ -195,25 +190,19 @@ export const renderChildrenTokens = (tokens?: Token[]): RichTextElement[] => {
             element.text = token.text.trim();
           }
 
-          if (isStylable) {
-            element.style = { ...element.style, code: true };
-          }
+          applyStyleIfAllowed(element, { code: true });
 
           break;
         }
 
         case 'del':
-          if (isStylable) {
-            element.style = { ...element.style, strike: true };
-          }
+          applyStyleIfAllowed(element, { strike: true });
 
           break;
 
         case 'heading':
         case 'strong':
-          if (isStylable) {
-            element.style = { ...element.style, bold: true };
-          }
+          applyStyleIfAllowed(element, { bold: true });
 
           break;
 

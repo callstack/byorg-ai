@@ -231,7 +231,7 @@ Here are special mentions: <!here> and <!channel>
     2. <!here> and <!channel>
     3. Also emoji :smiley:
 
-- :options: \`string.range(of:options:) :options: \` :options:
+- :options: \`string.range(of:options:) :options: \` :opti_ons:
 `;
 
 const richTextBlock: RichTextBlock = {
@@ -665,7 +665,7 @@ const richTextBlock: RichTextBlock = {
           style: { code: true },
         },
         { type: 'text', text: ' ' },
-        { type: 'emoji', name: 'options' },
+        { type: 'emoji', name: 'opti_ons' },
         { type: 'text', text: '\n' },
       ],
     },
