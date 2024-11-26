@@ -4,14 +4,20 @@ Plugins allow you to modify the context before it reaches the inference and AI r
 
 ## Middleware and Effects
 
-These two concepts are similar but have an important difference:
+While middleware and effects share some similarities, they serve different purposes within the framework:
 
-- Middlewares are run before response to user
-- Your middleware can be run before, or after call to `next` to perform actions after or before getting response from AI.
-- Effects are run after giving response to user
+### Middleware
+- A middleware function receives the request context and an asynchronous `next()` function, which triggers the next middleware in the chain.
+- Middleware can execute code before and after receiving the final response from the chat model:
+  - Code before the `await next()` call runs prior to receiving the chat model's response.
+  - Code after the `await next()` call runs after the chat model's response is received.
+- Middleware execution blocks the final response from being sent to the user. To avoid delaying the user response, use effects instead.
+- Partial responses (enabled via the onPartialResponse option) are streamed immediately as they are received from the chat model. These occur before the middleware code that runs after the await next() call.
 
-- Middlewares run before the response is sent to the user. They can execute actions either before or after calling next, allowing you to perform tasks before or after receiving a response from the AI.
-- Effects run after the response is delivered to the user. They are useful for tasks like gathering analytics or logging to a database without adding any waiting time for the user.
+### Effects
+- An effect function received the request context and the final response sent to the user.
+- Effects are executed after the message processing pipeline has completed.
+- Use effects for tasks like logging, analytics, or other post-processing operations that do not block the user response.
 
 Note that the response to the user is blocked until all middlewares finish processing.
 
