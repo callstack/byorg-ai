@@ -8,4 +8,5 @@ pnpm build
 
 pnpm changeset version
 pnpm install
-echo "Review and commit changelog files."
+
+echo "\nReview and commit changelog files 👀"
