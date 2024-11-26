@@ -24,7 +24,8 @@
   ],
   "scripts": {
     "build": "rslib build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "dependencies": {
     "date-fns": "^3.6.0",
@@ -35,5 +36,8 @@
     "@microsoft/api-extractor": "catalog:",
     "@rslib/core": "catalog:",
     "@slack/web-api": "^6.11.2"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.3"
   }
 }
