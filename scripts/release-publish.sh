@@ -6,4 +6,5 @@ set -e
 pnpm publish --recursive --filter @callstack/* --access public
 pnpm changeset tag
 
-echo "\\nPublished to NPM 🎉"
+echo
+echo "Published to NPM 🎉"
