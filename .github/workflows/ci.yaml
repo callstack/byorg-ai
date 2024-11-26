@@ -15,8 +15,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup
         uses: ./.github/actions/setup
@@ -37,3 +35,17 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
+
+  check-changeset:
+    name: Check changeset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check changeset
+        if: github.ref != 'refs/heads/main'
+        run: pnpm changeset status --since=origin/${{ github.base_ref }}
+        continue-on-error: true
