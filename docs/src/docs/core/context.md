@@ -26,7 +26,10 @@ export type RequestContext = {
   /** Function for generating a system prompt */
   systemPrompt: () => Promise<string> | string;
 
-  /** Function for handling chunks from ai streaming response */
+  /** 
+   * Received partial response update with response streaming.
+   * Note: setting this option will switch underlying assistant calls to streaming format. 
+   */
   onPartialResponse?: (text: string) => void;
 
   /** Measures and marks for performance tracking */
