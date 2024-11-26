@@ -1,5 +1,18 @@
 # @callstack/byorg-core
 
+## 0.4.0
+
+### Minor Changes
+
+- e4c7a51: move 'ai' as peer dep, remove redundant Open AI and Anthropic deps.
+- dd789a6: do not add sender id prefix for assistant group messages
+
+### Patch Changes
+
+- 17863b6: Pass context object to error handler.
+- d8c092c: add missing exports (Middleware, etc), rename `addReference` to `addReferences`.
+  - @callstack/byorg-utils@0.4.0
+
 ## 0.3.1
 
 ### Patch Changes

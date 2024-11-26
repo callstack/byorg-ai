@@ -1,6 +1,6 @@
 {
   "name": "@callstack/document-loaders",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "type": "module",
   "license": "MIT",
   "author": "Szymon Chmal <szymon.chmal@callstack.com> (https://github.com/V3R0N), Maciej Jastrzebski <mdjastrzebski@gmail.com> (https://github.com/mdjastrzebski), Kewin Wereszczynski <kewin.wereszczynski@callstack.com> (https://github.com/Q1w1N)",
@@ -27,7 +27,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@callstack/byorg-utils": "0.3.1",
+    "@callstack/byorg-utils": "workspace:^*",
     "@google-cloud/local-auth": "^3.0.1",
     "@notionhq/client": "^2.2.15",
     "google-auth-library": "^9.14.1",

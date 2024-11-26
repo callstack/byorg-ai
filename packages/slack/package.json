@@ -1,6 +1,6 @@
 {
   "name": "@callstack/byorg-slack",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "type": "module",
   "license": "MIT",
   "author": "Szymon Chmal <szymon.chmal@callstack.com> (https://github.com/V3R0N), Maciej Jastrzebski <mdjastrzebski@gmail.com> (https://github.com/mdjastrzebski), Kewin Wereszczynski <kewin.wereszczynski@callstack.com> (https://github.com/Q1w1N)",
@@ -29,9 +29,9 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@callstack/byorg-core": "0.3.1",
-    "@callstack/byorg-utils": "0.3.1",
-    "@callstack/slack-rich-text": "0.3.1",
+    "@callstack/byorg-core": "workspace:^*",
+    "@callstack/byorg-utils": "workspace:^*",
+    "@callstack/slack-rich-text": "workspace:^*",
     "@slack/bolt": "^3.21.1",
     "@slack/web-api": "^6.12.1",
     "p-debounce": "^4.0.0",
