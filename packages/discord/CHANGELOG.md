@@ -1,5 +1,11 @@
 # @callstack/byorg-discord
 
+## 0.4.1
+
+### Patch Changes
+
+- @callstack/byorg-core@0.4.1
+
 ## 0.4.0
 
 ### Patch Changes

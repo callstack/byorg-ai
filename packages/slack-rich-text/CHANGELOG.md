@@ -1,5 +1,11 @@
 # @callstack/slack-rich-text
 
+## 0.4.1
+
+### Patch Changes
+
+- 9a55f52: fix issue with adding styles to incorrect blocks
+
 ## 0.4.0
 
 ## 0.3.1
