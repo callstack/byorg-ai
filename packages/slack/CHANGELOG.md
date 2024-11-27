@@ -1,5 +1,14 @@
 # @callstack/byorg-slack
 
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies [5eed70b]
+  - @callstack/slack-rich-text@0.4.2
+  - @callstack/byorg-core@0.4.2
+  - @callstack/byorg-utils@0.4.2
+
 ## 0.4.1
 
 ### Patch Changes

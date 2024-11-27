@@ -1,5 +1,11 @@
 # @callstack/slack-rich-text
 
+## 0.4.2
+
+### Patch Changes
+
+- 5eed70b: fix: peerDeps
+
 ## 0.4.1
 
 ### Patch Changes
