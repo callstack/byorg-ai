@@ -33,11 +33,11 @@
     "ts-regex-builder": "^1.8.2"
   },
   "peerDependencies": {
-    "@microsoft/api-extractor": "catalog:",
-    "@rslib/core": "catalog:",
     "@slack/web-api": "^6.11.2"
   },
   "devDependencies": {
+    "@microsoft/api-extractor": "catalog:",
+    "@rslib/core": "catalog:",
     "vitest": "^2.1.3"
   }
 }
