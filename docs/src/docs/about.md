@@ -2,7 +2,7 @@
 
 ## Introduction
 
-byorg.ai is a framework designed for the rapid development and deployment of AI assistants within companies and organizations.
+byorg.ai is a framework designed for rapid development and deployment of AI assistants within companies and organizations.
 
 ## Supported Integrations
 

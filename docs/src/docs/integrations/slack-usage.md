@@ -28,6 +28,9 @@ received from slack endpoint.
 slack.processEvent(event);
 ```
 
+We provide automatic parsing from slack event to our internal event. We also provide custom formatter to
+[slack blocks](https://api.slack.com/block-kit) that uses `slack-rich-text` package.
+
 ## Websocket mode
 
 Alternatively, you can use [Slack SDK](https://tools.slack.dev/bolt-js/concepts/socket-mode) ability to connect to Slack API using WebSockets. This can be helpful in cases when you want to setup your server in a setting without public IP connection and/or for development purposes.

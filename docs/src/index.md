@@ -2,7 +2,7 @@
 pageType: home
 
 hero:
-  name: byorg-ai
+  name: '<img alt="byorg.ai" className="home-hero-name-img" src="/img/logo_dark">'
   text: 'AI Assistants Framework'
   tagline: A framework to make development of your AI Assistant faster and easier.
   actions:
