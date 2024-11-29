@@ -18,7 +18,7 @@ export default defineConfig({
     enableScrollToTop: true,
     outlineTitle: 'Contents',
     footer: {
-      message: 'Copyright © 2024 Callstack Open Source',
+      message: `Copyright © ${new Date().getFullYear()} Callstack Open Source`,
     },
     socialLinks: [
       {
