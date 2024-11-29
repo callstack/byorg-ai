@@ -17,14 +17,8 @@
   },
   {
     "type": "dir",
-    "name": "slack",
-    "label": "Slack",
-    "collapsed": true
-  },
-  {
-    "type": "dir",
-    "name": "discord",
-    "label": "Discord",
+    "name": "integrations",
+    "label": "Integrations",
     "collapsed": true
   }
 ]

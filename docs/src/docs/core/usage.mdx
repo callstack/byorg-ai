@@ -1,0 +1,59 @@
+import { Steps } from 'rspress/theme';
+
+# Usage
+
+## Creating an app
+
+Here is step by step how to start with byorg.
+
+{/* prettier-ignore-start */}
+
+<Steps>
+  ### Create a chat model instance
+  ```js
+  import { VercelChatModelAdapter } from '@callstack/byorg-core';
+  import OpenAI from 'openai';
+  import { createOpenAI } from '@ai-sdk/openai';
+
+  const LANGUAGE_MODEL = 'gpt-4o-2024-08-06';
+
+  const openAiProvider = createOpenAI({
+  apiKey: 'your-api-key',
+  compatibility: 'strict', // strict mode, enable when using the OpenAI API
+  });
+
+  const openAiModel = openAiProvider.languageModel(LANGUAGE_MODEL);
+
+  const chatModel = new VercelChatModelAdapter({
+    languageModel: openAiModel,
+  });
+  ```
+  ### Prepare a system prompt function
+  ```js
+  import { RequestContext } from '@callstack/byorg-core';
+
+  const systemPrompt = (context: RequestContext): Promise<string> | string => {
+    return "You are a helpful AI assistant named Cassandra";
+  };
+  ```
+  ### Create an Application instance
+  ```js
+  import { VercelChatModelAdapter } from '@callstack/byorg-core';
+
+  const app = createApp({
+    chatModel,
+    systemPrompt,
+  });
+  ```
+  ### Process user messages
+  ```js
+  const messages = [{ role: 'user', content: 'First message!' }]
+  const response = await app.processMessages(messages);
+  ```
+</Steps>
+
+{/* prettier-ignore-end */}
+
+That's it! Your message is being handled an processed by byorg.
+
+In next sections we will go through customisation, error handling and changing LLM provider, to better suit your needs.

@@ -3,5 +3,45 @@
     "type": "file",
     "name": "usage",
     "label": "Usage"
+  },
+  {
+    "type": "file",
+    "name": "chat-model",
+    "label": "Chat Model"
+  },
+  {
+    "type": "file",
+    "name": "system-prompt",
+    "label": "System Prompt"
+  },
+  {
+    "type": "file",
+    "name": "context",
+    "label": "Context"
+  },
+  {
+    "type": "file",
+    "name": "plugins",
+    "label": "Plugins"
+  },
+  {
+    "type": "file",
+    "name": "tools",
+    "label": "Tools"
+  },
+  {
+    "type": "file",
+    "name": "references",
+    "label": "References"
+  },
+  {
+    "type": "file",
+    "name": "performance",
+    "label": "Performance"
+  },
+  {
+    "type": "file",
+    "name": "error-handling",
+    "label": "Error Handling"
   }
 ]
