@@ -1,0 +1,28 @@
+{
+  "name": "bare-example",
+  "version": "1.0.0",
+  "description": "Example usage of byorg.ai core",
+  "type": "module",
+  "main": "dist/index.js",
+  "source": "src/index.js",
+  "private": true,
+  "scripts": {
+    "build": "rsbuild build",
+    "example": "pnpm build && dotenv -- node dist/index.cjs"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^1.0.2",
+    "@callstack/byorg-core": "0.4.2",
+    "@callstack/byorg-utils": "0.4.2"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^7.4.2",
+    "@callstack/eslint-config": "^14.2.0",
+    "@rsbuild/core": "^1.0.5",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  },
+  "author": "",
+  "license": "MIT"
+}

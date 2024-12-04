@@ -1,6 +1,7 @@
 packages:
   - packages/*
   - docs
+  - examples/*
 
 catalog:
   '@microsoft/api-extractor': '^7.47.12'
