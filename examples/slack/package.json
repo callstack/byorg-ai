@@ -10,13 +10,13 @@
   },
   "scripts": {
     "build": "rsbuild build",
-    "example": "pnpm build && mv dist/index.js dist/index.cjs && dotenv -- node dist/index.cjs"
+    "example": "pnpm build && dotenv -- node dist/index.cjs"
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.0.2",
-    "@callstack/byorg-core": "0.3.1",
-    "@callstack/byorg-slack": "0.3.1",
-    "@callstack/byorg-utils": "0.3.1"
+    "@callstack/byorg-core": "0.4.2",
+    "@callstack/byorg-slack": "0.4.2",
+    "@callstack/byorg-utils": "0.4.2"
   },
   "devDependencies": {
     "dotenv-cli": "^7.4.2",
@@ -27,5 +27,5 @@
     "typescript": "^5.6.3"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }

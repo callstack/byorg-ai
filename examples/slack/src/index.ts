@@ -14,19 +14,15 @@ const openAiProvider = createOpenAI({
   compatibility: 'strict', // strict mode, enable when using the OpenAI API
 });
 
-const openAiModel = openAiProvider.languageModel(LANGUAGE_MODEL);
-
 const chatModel = new VercelChatModelAdapter({
-  languageModel: openAiModel,
+  languageModel: openAiProvider.languageModel(LANGUAGE_MODEL),
 });
 
-const systemPrompt = () => {
-  return 'Your name is Cassandra. You are an AI Assistant.';
-};
+const SYSTEM_PROMPT = 'Your name is Byorg. You are an AI Assistant.';
 
 const app = createApp({
   chatModel,
-  systemPrompt,
+  systemPrompt: () => SYSTEM_PROMPT,
 });
 
 const slack = createSlackApp({

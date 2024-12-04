@@ -1,3 +1,4 @@
+// TODO
 // import readline from 'readline';
 // import { Message, VercelChatModelAdapter, createApp } from '@callstack/byorg-core';
 // import { createOpenAI } from '@ai-sdk/openai';

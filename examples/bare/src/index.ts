@@ -17,13 +17,11 @@ const chatModel = new VercelChatModelAdapter({
   languageModel: openAiModel,
 });
 
-const systemPrompt = () => {
-  return 'Your name is Cassandra. You are an AI Assistant.';
-};
+const SYSTEM_PROMPT = 'Your name is Byorg. You are an AI Assistant.';
 
 const app = createApp({
   chatModel,
-  systemPrompt,
+  systemPrompt: () => SYSTEM_PROMPT,
 });
 
 // Create a readline interface for user input
@@ -53,7 +51,7 @@ rl.on('line', async (line: string) => {
   messages.push({ role: 'user', content: input });
 
   process.stdout.write('\n');
-  process.stdout.write('Bot: ');
+  process.stdout.write('ai: ');
 
   let currentMessage = '';
   const { response } = await app.processMessages(messages, {
@@ -76,6 +74,6 @@ rl.on('line', async (line: string) => {
 });
 
 process.on('SIGINT', () => {
-  console.log('Ctrl-C was pressed');
+  console.log('Exiting');
   process.exit();
 });

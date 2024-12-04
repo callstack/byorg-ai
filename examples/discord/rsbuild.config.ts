@@ -4,7 +4,7 @@ export default defineConfig({
   source: {
     entry: {
       index: {
-        filename: 'index.js',
+        filename: 'index.cjs',
         import: './src/index.ts',
       },
     },
