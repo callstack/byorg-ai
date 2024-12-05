@@ -1,6 +1,6 @@
 ---
 '@callstack/byorg-discord': minor
-'discord-example': patch
+'discord-example': minor
 ---
 
 added start function to abstract away passing bot token

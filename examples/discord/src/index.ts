@@ -1,6 +1,6 @@
 import { VercelChatModelAdapter, createApp } from '@callstack/byorg-core';
 import { createOpenAI } from '@ai-sdk/openai';
-import { requireEnv } from '@callstack/byorg-utils';
+import { logger, requireEnv } from '@callstack/byorg-utils';
 import { createDiscordApp } from '@callstack/byorg-discord';
 
 const LANGUAGE_MODEL = 'gpt-4o-2024-11-20';
@@ -27,7 +27,16 @@ const app = createApp({
   systemPrompt,
 });
 
-void createDiscordApp({
+const discordClient = await createDiscordApp({
   app,
   botToken: DISCORD_BOT_TOKEN,
 });
+
+void (async () => {
+  try {
+    await discordClient.start();
+    logger.info('Discord ready.');
+  } catch (error) {
+    logger.error('Dev Slack start error:', error);
+  }
+})();
