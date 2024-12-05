@@ -3,4 +3,4 @@
 'discord-example': minor
 ---
 
-added start function to abstract away passing bot token
+changed passing bot token variable and discord login

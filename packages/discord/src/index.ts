@@ -6,17 +6,10 @@ const UPDATE_THROTTLE_TIME = 200;
 
 export type DiscordApplicationConfig = {
   app: Application;
-  botToken: string;
 };
 
-type ClientStart = {
-  start: () => Promise<string>;
-};
-
-export type DiscordClient = Client & ClientStart;
-
-export function createDiscordApp(options: DiscordApplicationConfig): DiscordClient {
-  const { app, botToken } = options;
+export function createDiscordApp(options: DiscordApplicationConfig) {
+  const { app } = options;
 
   const client = new Client({
     intents: [
@@ -26,7 +19,7 @@ export function createDiscordApp(options: DiscordApplicationConfig): DiscordClie
       GatewayIntentBits.GuildMessages,
     ],
     partials: [Partials.Channel],
-  }) as DiscordClient;
+  });
 
   client.once(Events.ClientReady, (readyClient) => {
     console.log(`Ready! Logged in as ${readyClient.user.tag}`);
@@ -81,10 +74,6 @@ export function createDiscordApp(options: DiscordApplicationConfig): DiscordClie
     // Wait for effects to finish
     await pendingEffects;
   });
-
-  client.start = () => {
-    return client.login(botToken);
-  };
 
   return client;
 }
