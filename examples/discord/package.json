@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.0.2",
-    "@callstack/byorg-core": "workspace:^",
-    "@callstack/byorg-discord": "workspace:^",
-    "@callstack/byorg-utils": "workspace:^",
+    "@callstack/byorg-core": "workspace:*",
+    "@callstack/byorg-discord": "workspace:*",
+    "@callstack/byorg-utils": "workspace:*",
     "zlib-sync": "^0.1.9"
   },
   "devDependencies": {
