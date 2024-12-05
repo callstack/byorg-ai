@@ -88,10 +88,10 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(zod@3.23.8)
       '@callstack/byorg-core':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/core
       '@callstack/byorg-utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/utils
     devDependencies:
       '@callstack/eslint-config':
@@ -119,13 +119,13 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(zod@3.23.8)
       '@callstack/byorg-core':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/core
       '@callstack/byorg-discord':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/discord
       '@callstack/byorg-utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/utils
       zlib-sync:
         specifier: ^0.1.9
@@ -156,13 +156,13 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(zod@3.23.8)
       '@callstack/byorg-core':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/core
       '@callstack/byorg-slack':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/slack
       '@callstack/byorg-utils':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/utils
     devDependencies:
       '@callstack/eslint-config':
@@ -187,7 +187,7 @@ importers:
   packages/core:
     dependencies:
       '@callstack/byorg-utils':
-        specifier: workspace:^*
+        specifier: workspace:*
         version: link:../utils
       ts-regex-builder:
         specifier: ^1.8.2
@@ -212,7 +212,7 @@ importers:
   packages/discord:
     dependencies:
       '@callstack/byorg-core':
-        specifier: workspace:^*
+        specifier: workspace:*
         version: link:../core
       discord-interactions:
         specifier: ^4.1.0
@@ -231,7 +231,7 @@ importers:
   packages/document-loaders:
     dependencies:
       '@callstack/byorg-utils':
-        specifier: workspace:^*
+        specifier: workspace:*
         version: link:../utils
       '@google-cloud/local-auth':
         specifier: ^3.0.1
@@ -280,13 +280,13 @@ importers:
   packages/slack:
     dependencies:
       '@callstack/byorg-core':
-        specifier: workspace:^*
+        specifier: workspace:*
         version: link:../core
       '@callstack/byorg-utils':
-        specifier: workspace:^*
+        specifier: workspace:*
         version: link:../utils
       '@callstack/slack-rich-text':
-        specifier: workspace:^*
+        specifier: workspace:*
         version: link:../slack-rich-text
       '@slack/bolt':
         specifier: ^3.21.1
