@@ -39,7 +39,7 @@
   "devDependencies": {
     "@microsoft/api-extractor": "catalog:",
     "@rslib/core": "catalog:",
-    "ai": "^4.0.3",
+    "ai": "^4.0.13",
     "vitest": "catalog:"
   }
 }
