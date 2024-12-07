@@ -1,5 +1,15 @@
 # @callstack/byorg-discord
 
+## 0.5.0
+
+### Minor Changes
+
+- 5e25d3a: discord: changed passing bot token variable and discord login
+
+### Patch Changes
+
+- @callstack/byorg-core@0.5.0
+
 ## 0.4.2
 
 ### Patch Changes

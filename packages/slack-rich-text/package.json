@@ -1,6 +1,6 @@
 {
   "name": "@callstack/slack-rich-text",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "type": "module",
   "license": "MIT",
   "author": "Kewin Wereszczynski <kewin.wereszczynski@callstack.com> (https://github.com/Q1w1N)",
