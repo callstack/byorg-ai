@@ -28,6 +28,11 @@ export default defineConfig({
           '.js': ['.js', '.ts'],
         },
       },
+      ignoreWarnings: [
+        /the request of a dependency is an expression/,
+        /Can't resolve 'bufferutil'/,
+        /Can't resolve 'utf-8-validate'/,
+      ],
     },
   },
 });

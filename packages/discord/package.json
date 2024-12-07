@@ -27,7 +27,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@callstack/byorg-core": "workspace:^*",
+    "@callstack/byorg-core": "workspace:*",
     "discord-interactions": "^4.1.0",
     "discord.js": "^14.15.3"
   },

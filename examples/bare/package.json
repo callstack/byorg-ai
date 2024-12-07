@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^1.0.2",
-    "@callstack/byorg-core": "0.4.2",
-    "@callstack/byorg-utils": "0.4.2"
+    "@callstack/byorg-core": "workspace:*",
+    "@callstack/byorg-utils": "workspace:*"
   },
   "devDependencies": {
     "dotenv-cli": "^7.4.2",

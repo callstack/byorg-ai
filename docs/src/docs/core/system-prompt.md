@@ -20,7 +20,7 @@ export const systemPrompt = (context: RequestContext): Promise<string> | string 
   let date = new Date().toDateString();
   let userName = context.extras.userName;
 
-  return `You are a helpful AI bot. Your name is Cassandra. You work for Callstack.
+  return `You are a helpful AI bot. Your name is Byorg. You work for ACME.
   Current date: ${date}
   You are talking with: ${userName}`;
 };

@@ -8,10 +8,9 @@ export type DiscordApplicationConfig = {
   app: Application;
 };
 
-export async function createDiscordApp(options: DiscordApplicationConfig) {
+export function createDiscordApp(options: DiscordApplicationConfig) {
   const { app } = options;
 
-  const botToken = process.env['DISCORD_BOT_TOKEN'] as string;
   const client = new Client({
     intents: [
       GatewayIntentBits.DirectMessages,
@@ -75,8 +74,6 @@ export async function createDiscordApp(options: DiscordApplicationConfig) {
     // Wait for effects to finish
     await pendingEffects;
   });
-
-  await client.login(botToken);
 
   return client;
 }
