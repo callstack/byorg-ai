@@ -32,7 +32,7 @@ export type ErrorHandler = (
 ) => Promise<MessageResponse> | MessageResponse;
 
 export type ApplicationConfig = {
-  chatModel: ChatModel;
+  chatModel: ChatModel | ((context: RequestContext) => ChatModel);
   systemPrompt: (context: RequestContext) => Promise<string> | string;
   plugins?: ApplicationPlugin[];
   errorHandler?: ErrorHandler;
@@ -116,7 +116,8 @@ export function createApp(config: ApplicationConfig): Application {
         performance.markEnd(PerformanceMarks.middlewareBeforeHandler);
 
         performance.markStart(PerformanceMarks.chatModel);
-        const response = await chatModel.generateResponse(context);
+        const resolvedChatModel = typeof chatModel === 'function' ? chatModel(context) : chatModel;
+        const response = await resolvedChatModel.generateResponse(context);
         performance.markEnd(PerformanceMarks.chatModel);
 
         // Opens the 'middleware:afterHandler' mark that will be closed after middlewareExecutor has run
