@@ -12,14 +12,12 @@ const openAiProvider = createOpenAI({
   compatibility: 'strict', // strict mode, enable when using the OpenAI API
 });
 
-const openAiModel = openAiProvider.languageModel(LANGUAGE_MODEL);
-
 const chatModel = new VercelChatModelAdapter({
-  languageModel: openAiModel,
+  languageModel: openAiProvider.languageModel(LANGUAGE_MODEL),
 });
 
 const systemPrompt = () => {
-  return 'Your name is Cassandra. You are an AI Assistant.';
+  return 'Your name is Byorg. You are a helpful AI Assistant.';
 };
 
 const app = createApp({
@@ -27,13 +25,11 @@ const app = createApp({
   systemPrompt,
 });
 
-const discordClient = await createDiscordApp({
-  app,
-});
+const discord = await createDiscordApp({ app });
 
 void (async () => {
   try {
-    await discordClient.login(DISCORD_BOT_TOKEN);
+    await discord.login(DISCORD_BOT_TOKEN);
     logger.info('Discord ready.');
   } catch (error) {
     logger.error('Dev Slack start error:', error);
