@@ -32,8 +32,8 @@ export type ErrorHandler = (
 ) => Promise<MessageResponse> | MessageResponse;
 
 export type ApplicationConfig = {
-  chatModel: ChatModel | ((context: RequestContext) => ChatModel);
   systemPrompt: (context: RequestContext) => Promise<string> | string;
+  chatModel: ChatModel | ((context: RequestContext) => ChatModel);
   plugins?: ApplicationPlugin[];
   errorHandler?: ErrorHandler;
 };
@@ -90,6 +90,7 @@ export function createApp(config: ApplicationConfig): Application {
       performance.markStart(PerformanceMarks.processMessages);
 
       const onPartialResponse = options?.onPartialResponse;
+
       const context: RequestContext = {
         messages,
         get lastMessage() {
