@@ -17,7 +17,7 @@ const chatModel = new VercelChatModelAdapter({
   languageModel: openAiModel,
 });
 
-const SYSTEM_PROMPT = 'Your name is Byorg. You are an AI Assistant.';
+const SYSTEM_PROMPT = 'Your name is Byorg. You are a helpful AI Assistant.';
 
 const app = createApp({
   chatModel,
