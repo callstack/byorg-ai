@@ -57,17 +57,18 @@ export class VercelChatModelAdapter implements ChatModel {
   constructor(private readonly _options: VercelChatModelAdapterOptions) {}
 
   async generateResponse(context: RequestContext): Promise<AssistantResponse> {
-    const messages = context.messages;
-
-    const systemPrompt = await context.systemPrompt();
+    let systemPrompt = context.systemPrompt();
     const entitiesPrompt = formatResolvedEntities(context.resolvedEntities);
-    const finalSystemPrompt = [systemPrompt, entitiesPrompt].join('\n\n');
+    if (systemPrompt && entitiesPrompt) {
+      systemPrompt += '\n\n' + entitiesPrompt;
+    }
 
-    // TODO: Use userId in anonymous case
-    const resolvedMessages: CoreMessage[] = [
-      { role: 'system' as const, content: finalSystemPrompt },
-      ...messages.map(toMessageParam),
-    ];
+    const messages: CoreMessage[] = [];
+    if (systemPrompt) {
+      messages.push({ role: 'system', content: systemPrompt });
+    }
+
+    messages.push(...context.messages.map(toMessageParam));
 
     const getRunToolFunction =
       <TParams extends z.ZodSchema, TOutput>(
@@ -94,7 +95,7 @@ export class VercelChatModelAdapter implements ChatModel {
 
     const executionContext: AiExecutionContext = {
       tools,
-      messages: resolvedMessages,
+      messages: messages,
     };
 
     const executionResult = context.onPartialResponse
@@ -229,14 +230,14 @@ function toNumberOrZero(n: number): number {
   return Number.isNaN(n) ? 0 : n;
 }
 
-function formatResolvedEntities(entities: Record<string, unknown>): string {
+function formatResolvedEntities(entities: Record<string, unknown>): string | null {
   if (Object.keys(entities).length === 0) {
-    return '';
+    return null;
   }
 
-  return `ENTITY DICTIONARY: \n
-    ${Object.entries(entities)
-      .map(([key, value]) => `'${key}' is '${JSON.stringify(value)}'`)
-      .join('\n')}
-      `;
+  return `### ENTITY DICTIONARY ###\n
+${Object.entries(entities)
+  .map(([key, value]) => `'${key}' is '${JSON.stringify(value)}'`)
+  .join('\n')}
+  `;
 }

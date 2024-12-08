@@ -32,8 +32,8 @@ export type ErrorHandler = (
 ) => Promise<MessageResponse> | MessageResponse;
 
 export type ApplicationConfig = {
-  systemPrompt: (context: RequestContext) => Promise<string> | string;
   chatModel: ChatModel | ((context: RequestContext) => ChatModel);
+  systemPrompt?: ((context: RequestContext) => string | null) | string;
   plugins?: ApplicationPlugin[];
   errorHandler?: ErrorHandler;
 };
@@ -89,8 +89,6 @@ export function createApp(config: ApplicationConfig): Application {
       const performance = new PerformanceTimeline();
       performance.markStart(PerformanceMarks.processMessages);
 
-      const onPartialResponse = options?.onPartialResponse;
-
       const context: RequestContext = {
         messages,
         get lastMessage() {
@@ -102,14 +100,16 @@ export function createApp(config: ApplicationConfig): Application {
 
           return lastMessage;
         },
-
+        systemPrompt: () =>
+          typeof config.systemPrompt === 'function'
+            ? config.systemPrompt(context)
+            : (config.systemPrompt ?? null),
+        onPartialResponse: options?.onPartialResponse,
         tools,
         references: getReferenceStorage(),
         resolvedEntities: {},
-        onPartialResponse,
         extras: options?.extras ?? {},
         performance,
-        systemPrompt: () => config.systemPrompt(context),
       };
 
       const handler = async () => {
