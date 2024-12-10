@@ -11,11 +11,13 @@ const openAiProvider = createOpenAI({
   compatibility: 'strict', // strict mode, enable when using the OpenAI API
 });
 
-const openAiModel = openAiProvider.languageModel(LANGUAGE_MODEL);
-
 const chatModel = new VercelChatModelAdapter({
-  languageModel: openAiModel,
+  languageModel: openAiProvider.languageModel(LANGUAGE_MODEL),
 });
+
+// You can use a mock model for testing before using real LLM
+// import { createChatMockModel } from '@callstack/byorg-core';
+// const chatModel = createChatMockModel();
 
 const SYSTEM_PROMPT = 'Your name is Byorg. You are an AI Assistant.';
 

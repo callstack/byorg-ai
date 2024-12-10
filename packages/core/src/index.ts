@@ -46,3 +46,6 @@ export {
   type PerformanceMark,
   type PerformanceMeasure,
 } from './performance.js';
+
+export { createMockChatModel } from './mock/mock-model.js';
+export type { MockChatModelConfig as MockModelConfig } from './mock/mock-model.js';
