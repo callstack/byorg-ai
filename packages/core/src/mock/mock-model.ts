@@ -1,7 +1,7 @@
 import { AssistantResponse, ChatModel } from '../ai/types.js';
 import { RequestContext } from '../domain.js';
 
-export const LOREM_IPSUM_ITEMS = [
+export const LOREM_IPSUM_RESPONSES = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
@@ -13,14 +13,14 @@ export const LOREM_IPSUM_ITEMS = [
   'Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?',
 ];
 
-export type MockModelConfig = {
-  items?: string[];
+export type MockChatModelConfig = {
+  responses?: string[];
   delay?: number;
   seed?: number;
 };
 
-export function createMockModel(config?: MockModelConfig): ChatModel {
-  const items = config?.items ?? LOREM_IPSUM_ITEMS;
+export function createMockChatModel(config?: MockChatModelConfig): ChatModel {
+  const responses = config?.responses ?? LOREM_IPSUM_RESPONSES;
   const delay = config?.delay ?? 100;
 
   let lastRandom = config?.seed ?? Date.now();
@@ -28,7 +28,7 @@ export function createMockModel(config?: MockModelConfig): ChatModel {
     generateResponse: async (context: RequestContext): Promise<AssistantResponse> => {
       lastRandom = random(lastRandom);
 
-      const response = items[lastRandom % items.length];
+      const response = responses[lastRandom % responses.length];
       const tokens = response.split(/(\S+\s*)/).filter(Boolean);
 
       if (context.onPartialResponse) {

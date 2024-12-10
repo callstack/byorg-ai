@@ -17,8 +17,8 @@ const chatModel = new VercelChatModelAdapter({
 });
 
 // You can use a mock model for testing before using real LLM:
-// import { createMockModel } from '@callstack/byorg-core';
-// const chatModel = createMockModel();
+// import { createChatMockModel } from '@callstack/byorg-core';
+// const chatModel = createChatMockModel();
 
 const systemPrompt = () => {
   return 'Your name is Byorg. You are a helpful AI Assistant.';

@@ -1,12 +1,12 @@
 import { expect, test, vitest } from 'vitest';
 import { createApp } from '../application.js';
 import { Message } from '../domain.js';
-import { createMockModel } from '../mock/mock-model.js';
+import { createMockChatModel } from '../mock/mock-model.js';
 
 const messages: Message[] = [{ role: 'user', content: 'Hello' }];
 
 test('basic non-streaming test', async () => {
-  const testModel = createMockModel({ delay: 0, seed: 3 });
+  const testModel = createMockChatModel({ delay: 0, seed: 3 });
   const app = createApp({
     chatModel: testModel,
     systemPrompt: () => '',
@@ -29,7 +29,7 @@ test('basic non-streaming test', async () => {
 });
 
 test('basic streaming test', async () => {
-  const testModel = createMockModel({ delay: 0, seed: 3 });
+  const testModel = createMockChatModel({ delay: 0, seed: 3 });
   const app = createApp({
     chatModel: testModel,
     systemPrompt: () => '',
