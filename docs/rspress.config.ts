@@ -4,7 +4,6 @@ import * as path from 'node:path';
 
 export default defineConfig({
   root: 'src',
-  base: '/byorg-ai/',
   title: 'byorg.ai',
   icon: '/img/favicon.ico',
   description: 'TypeScript framework for writing chatbot applications.',
