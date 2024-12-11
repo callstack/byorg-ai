@@ -29,6 +29,7 @@ export type SlackApplicationConfig = {
   logLevel?: Slack.LogLevel;
 };
 
+// Helper TS function to extract types eg. messages?: Message[] into Message
 export type Unpacked<T> = T extends (infer U)[] ? NonNullable<U> : NonNullable<T>;
 
 export type MessageElement = Unpacked<ConversationsRepliesResponse['messages']>;
