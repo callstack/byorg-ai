@@ -1,5 +1,5 @@
-import Slack, { ContextBlock, LogLevel, RichTextBlock, SayFn } from '@slack/bolt';
-import { WebClient } from '@slack/web-api';
+import Slack, { LogLevel, SayFn } from '@slack/bolt';
+import { ContextBlock, RichTextBlock, WebClient } from '@slack/web-api';
 import { Application } from '@callstack/byorg-core';
 import { logger } from '@callstack/byorg-utils';
 import { parseMarkdownToRichTextBlock } from '@callstack/slack-rich-text';

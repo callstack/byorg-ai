@@ -1,6 +1,6 @@
 import { logger } from '@callstack/byorg-utils';
-import { Channel } from '@slack/web-api/dist/response/ConversationsInfoResponse.js';
 import { getWebClient } from '../slack-api.js';
+import { Channel } from '../types.js';
 
 export type SlackChannelInfo = {
   name: string | undefined;

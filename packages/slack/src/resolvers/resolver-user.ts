@@ -1,6 +1,6 @@
 import { logger } from '@callstack/byorg-utils';
-import { Profile } from '@slack/web-api/dist/response/UsersProfileGetResponse.js';
 import { getWebClient } from '../slack-api.js';
+import { Profile } from '../types.js';
 
 export type SlackUserInfo = {
   realName: string | undefined;
