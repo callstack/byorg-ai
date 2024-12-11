@@ -58,9 +58,11 @@ export class VercelChatModelAdapter implements ChatModel {
 
   async generateResponse(context: RequestContext): Promise<AssistantResponse> {
     let systemPrompt = context.systemPrompt();
-    const entitiesPrompt = formatResolvedEntities(context.resolvedEntities);
-    if (systemPrompt && entitiesPrompt) {
-      systemPrompt += '\n\n' + entitiesPrompt;
+    if (systemPrompt) {
+      const entitiesPrompt = formatResolvedEntities(context.resolvedEntities);
+      if (entitiesPrompt) {
+        systemPrompt += '\n\n' + entitiesPrompt;
+      }
     }
 
     const messages: CoreMessage[] = [];
