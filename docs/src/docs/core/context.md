@@ -24,7 +24,7 @@ export type RequestContext = {
   resolvedEntities: EntityInfo;
 
   /** Function for generating a system prompt */
-  systemPrompt: () => Promise<string> | string;
+  systemPrompt: () => string | null;
 
   /** 
    * Received partial response update with response streaming.

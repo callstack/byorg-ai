@@ -19,11 +19,11 @@ const chatModel = new VercelChatModelAdapter({
 // import { createChatMockModel } from '@callstack/byorg-core';
 // const chatModel = createChatMockModel();
 
-const SYSTEM_PROMPT = 'Your name is Byorg. You are an AI Assistant.';
+const SYSTEM_PROMPT = 'Your name is Byorg. You are a helpful AI Assistant.';
 
 const app = createApp({
   chatModel,
-  systemPrompt: () => SYSTEM_PROMPT,
+  systemPrompt: SYSTEM_PROMPT,
 });
 
 // Create a readline interface for user input

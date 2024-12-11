@@ -30,7 +30,7 @@ export type RequestContext = {
   tools: ApplicationTool[];
   references: ReferenceStorage;
   resolvedEntities: EntityInfo;
-  systemPrompt: () => Promise<string> | string;
+  systemPrompt: () => string | null;
   onPartialResponse?: (text: string) => void;
   extras: MessageRequestExtras;
   performance: PerformanceTimeline;

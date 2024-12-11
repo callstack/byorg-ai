@@ -9,7 +9,6 @@ test('basic non-streaming test', async () => {
   const testModel = createMockChatModel({ delay: 0, seed: 3 });
   const app = createApp({
     chatModel: testModel,
-    systemPrompt: () => '',
   });
 
   const result = await app.processMessages(messages);
@@ -32,7 +31,6 @@ test('basic streaming test', async () => {
   const testModel = createMockChatModel({ delay: 0, seed: 3 });
   const app = createApp({
     chatModel: testModel,
-    systemPrompt: () => '',
   });
 
   const onPartialResponse = vitest.fn();
