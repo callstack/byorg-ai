@@ -1,10 +1,8 @@
 import * as Path from 'node:path';
 import { FileBuffer } from '@callstack/byorg-core';
 import { requireEnv } from '@callstack/byorg-utils';
-import { AuthTestResponse, WebClient, type FilesInfoResponse } from '@slack/web-api';
-import { MessageElement } from '@slack/web-api/dist/response/ConversationsRepliesResponse.js';
-
-export type File = NonNullable<FilesInfoResponse['file']>;
+import { AuthTestResponse, WebClient } from '@slack/web-api';
+import { File, MessageElement } from './types.js';
 
 let client: WebClient | null = null;
 

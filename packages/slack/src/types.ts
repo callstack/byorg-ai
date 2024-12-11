@@ -1,5 +1,11 @@
 import { Application } from '@callstack/byorg-core';
 import Slack from '@slack/bolt';
+import {
+  ConversationsInfoResponse,
+  ConversationsRepliesResponse,
+  FilesInfoResponse,
+  UsersProfileGetResponse,
+} from '@slack/web-api';
 
 /**
  * This type defines a standardized structure for Slack messages,
@@ -22,5 +28,17 @@ export type SlackApplicationConfig = {
   signingSecret: string;
   logLevel?: Slack.LogLevel;
 };
+
+export type Unpacked<T> = T extends (infer U)[] ? NonNullable<U> : NonNullable<T>;
+
+export type MessageElement = Unpacked<ConversationsRepliesResponse['messages']>;
+
+export type FileElement = Unpacked<MessageElement['files']>;
+
+export type File = NonNullable<FilesInfoResponse['file']>;
+
+export type Profile = Unpacked<UsersProfileGetResponse['profile']>;
+
+export type Channel = Unpacked<ConversationsInfoResponse['channel']>;
 
 export type ConversationMode = 'direct' | 'public_channel';

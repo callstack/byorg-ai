@@ -1,12 +1,8 @@
-import {
-  FileElement,
-  MessageElement,
-} from '@slack/web-api/dist/response/ConversationsRepliesResponse.js';
-import { WebClient } from '@slack/web-api';
-import { RichTextBlock } from '@slack/bolt';
+import { RichTextBlock, WebClient } from '@slack/web-api';
 import { FileBuffer, Message } from '@callstack/byorg-core';
 import { parseRichTextBlockToMarkdown } from '@callstack/slack-rich-text';
 import { fetchFile } from './slack-api.js';
+import { FileElement, MessageElement } from './types.js';
 
 export async function toCoreMessage(
   message: MessageElement,
