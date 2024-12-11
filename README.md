@@ -1,21 +1,21 @@
-# byorg-ai - chatbot application framework
+# byorg.ai - Chatbot Application Framework
 
-[Docs](https://callstack.github.io/byorg-ai/)
+[Our Docs](https://byorg.ai)
 
 ## Structure
 
-### byorg-ai framework
+### byorg.ai framework
 
 Packages:
 
-- `packages/core` - contains the core logic for the chatbot framework
-- `packages/slack` - contains the logic for the slack integration
-- `packages/discord` - contains the logic for the discord integration
-- `packages/utils` - contains the utility functions (e.g. logger)
-- `packages/document-loaders` - contains the document loaders (e.g. for Google Drive, Notion, etc.)
-- `packages/slack-rich-text` - custom Markdown renderer for Slack Blocks/Rich Text format
+- `packages/core` - Frontend-agnostic chatbot logic (application, middlewares, effects)
+- `packages/slack` - Slack frontend integration
+- `packages/discord` - Discord frontend integration
+- `packages/utils` - Utility functions (e.g. logger)
+- `packages/document-loaders` - Document loaders: Google Docs, Notion, PDF, etc.)
+- `packages/slack-rich-text` - Markdown renderer to/from Slack Blocks format
 
-## byorg-ai framework key concepts (`core` package)
+## byorg.ai key concepts (`core` package)
 
 - `Application` (message processor) - pipeline for processing messages from the user. In starts with conversation history (e.g. for Slack), then in passes the message through a series of middleware and finally to AI provider (e.g. OpenAI) which produces the response.
 - `Middleware` - a middleware is a function that processes the message before it is passed to the AI provider. It is used to add custom logic to the message processing pipeline.
