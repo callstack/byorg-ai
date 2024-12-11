@@ -20,13 +20,11 @@ const chatModel = new VercelChatModelAdapter({
 // import { createChatMockModel } from '@callstack/byorg-core';
 // const chatModel = createChatMockModel();
 
-const systemPrompt = () => {
-  return 'Your name is Byorg. You are a helpful AI Assistant.';
-};
+const SYSTEM_PROMPT = 'Your name is Byorg. You are a helpful AI Assistant.';
 
 const app = createApp({
   chatModel,
-  systemPrompt,
+  systemPrompt: SYSTEM_PROMPT,
 });
 
 const discord = await createDiscordApp({ app });

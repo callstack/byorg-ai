@@ -23,7 +23,7 @@ const SYSTEM_PROMPT = 'Your name is Byorg. You are a helpful AI Assistant.';
 
 const app = createApp({
   chatModel,
-  systemPrompt: () => SYSTEM_PROMPT,
+  systemPrompt: SYSTEM_PROMPT,
 });
 
 // Create a readline interface for user input

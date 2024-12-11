@@ -28,21 +28,13 @@ Here is step by step how to start with byorg.
     languageModel: openAiModel,
   });
   ```
-  ### Prepare a system prompt function
-  ```js
-  import { RequestContext } from '@callstack/byorg-core';
-
-  const systemPrompt = (context: RequestContext): Promise<string> | string => {
-    return "You are a helpful AI assistant named Byorg";
-  };
-  ```
+  
   ### Create an Application instance
   ```js
   import { VercelChatModelAdapter } from '@callstack/byorg-core';
 
   const app = createApp({
-    chatModel,
-    systemPrompt,
+    chatModel
   });
   ```
   ### Process user messages
