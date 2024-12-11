@@ -1,5 +1,20 @@
 # @callstack/byorg-slack
 
+## 0.6.0
+
+### Minor Changes
+
+- c9731e5: Updated slack/bolt and slack/web-api dependencies
+
+### Patch Changes
+
+- Updated dependencies [287c02b]
+- Updated dependencies [02bd239]
+- Updated dependencies [bf009e8]
+  - @callstack/byorg-core@0.6.0
+  - @callstack/slack-rich-text@0.6.0
+  - @callstack/byorg-utils@0.6.0
+
 ## 0.5.0
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @callstack/byorg-core
 
+## 0.6.0
+
+### Minor Changes
+
+- 287c02b: core: make systemPrompt both optional and sync-only
+- 02bd239: core: allow for dynamic model selection
+- bf009e8: core: mock chat model for testing setup
+
+### Patch Changes
+
+- @callstack/byorg-utils@0.6.0
+
 ## 0.5.0
 
 ### Patch Changes
