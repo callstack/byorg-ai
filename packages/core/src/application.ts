@@ -79,12 +79,11 @@ export function createApp(config: ApplicationConfig): Application {
       messages: Message[],
       options?: ProcessMessageOptions,
     ): Promise<ProcessMessageResult> => {
-      const lastMessage = messages.at(-1);
-      if (lastMessage?.role !== 'user') {
-        throw new Error('Last message in the "messages" list should be a "UserMessage"');
-      }
+      removeLastAssistantMessage(messages);
 
-      logger.debug(`Processing message for user: ${lastMessage.senderId}`);
+      const lastMessage = messages.at(-1);
+
+      logger.debug(`Processing message for user: ${lastMessage?.senderId}`);
 
       const performance = new PerformanceTimeline();
       performance.markStart(PerformanceMarks.processMessages);
@@ -156,6 +155,20 @@ export function createApp(config: ApplicationConfig): Application {
       return { response, pendingEffects };
     },
   };
+}
+
+// Making "UserMessage" a newest one
+function removeLastAssistantMessage(messages: Message[]) {
+  let ignoredCount = 0;
+
+  while (messages.at(-1)?.role === 'assistant') {
+    messages.pop();
+    ignoredCount++;
+  }
+
+  if (ignoredCount > 0) {
+    logger.warn(`Ignoring ${ignoredCount} lastest messages, as it was from Assistant.`);
+  }
 }
 
 function defaultErrorHandler(error: unknown, _context: RequestContext): SystemResponse {
