@@ -69,3 +69,40 @@ test('basic streaming test', async () => {
   });
   await expect(result.pendingEffects).resolves.toEqual([]);
 });
+
+test('removing last assistant messages to make usermessage the newest', async () => {
+  const testModel = createMockChatModel({ delay: 0, seed: 3 });
+
+  const messages: Message[] = [
+    { role: 'user', content: 'Hello' },
+    { role: 'assistant', content: 'Hi!' },
+    { role: 'assistant', content: 'Sup!' },
+  ];
+
+  const app = createApp({
+    chatModel: testModel,
+  });
+
+  const onPartialResponse = vitest.fn();
+  const mockConsole = vitest.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+  const result = await app.processMessages(messages, { onPartialResponse });
+
+  expect(result.response).toEqual({
+    content:
+      'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    role: 'assistant',
+    usage: {
+      model: 'test',
+      inputTokens: 1,
+      outputTokens: 17,
+      requests: 1,
+      responseTime: 0,
+    },
+  });
+
+  expect(messages.at(-1)?.role).toBe('user');
+  expect(mockConsole.mock.calls[0][0]).toContain(
+    'Ignoring 2 lastest messages, as it was from Assistant.',
+  );
+});
