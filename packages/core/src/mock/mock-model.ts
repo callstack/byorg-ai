@@ -17,18 +17,22 @@ export type MockChatModelConfig = {
   responses?: string[];
   delay?: number;
   seed?: number;
+  processRequest?: (context: RequestContext) => string;
 };
 
 export function createMockChatModel(config?: MockChatModelConfig): ChatModel {
   const responses = config?.responses ?? LOREM_IPSUM_RESPONSES;
   const delay = config?.delay ?? 100;
+  const processRequest = config?.processRequest;
 
   let lastRandom = config?.seed ?? Date.now();
   return {
     generateResponse: async (context: RequestContext): Promise<AssistantResponse> => {
       lastRandom = random(lastRandom);
 
-      const response = responses[lastRandom % responses.length];
+      const response = processRequest
+        ? processRequest(context)
+        : responses[lastRandom % responses.length];
       const tokens = response.split(/(\S+\s*)/).filter(Boolean);
 
       if (context.onPartialResponse) {

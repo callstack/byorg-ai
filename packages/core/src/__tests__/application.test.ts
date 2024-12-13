@@ -1,6 +1,6 @@
 import { expect, test, vitest } from 'vitest';
 import { createApp } from '../application.js';
-import { Message } from '../domain.js';
+import { Message, RequestContext } from '../domain.js';
 import { createMockChatModel } from '../mock/mock-model.js';
 
 const messages: Message[] = [{ role: 'user', content: 'Hello' }];
@@ -71,7 +71,16 @@ test('basic streaming test', async () => {
 });
 
 test('removing last assistant messages to make usermessage the newest', async () => {
-  const testModel = createMockChatModel({ delay: 0, seed: 3 });
+  const processRequest = vitest.fn((context: RequestContext) => {
+    expect(context.messages).toEqual([{ role: 'user', content: 'Hello' }]);
+    return 'Response text';
+  });
+
+  const testModel = createMockChatModel({
+    delay: 0,
+    seed: 3,
+    processRequest,
+  });
 
   const messages: Message[] = [
     { role: 'user', content: 'Hello' },
@@ -84,25 +93,17 @@ test('removing last assistant messages to make usermessage the newest', async ()
   });
 
   const onPartialResponse = vitest.fn();
-  const mockConsole = vitest.spyOn(console, 'warn').mockImplementation(() => undefined);
 
-  const result = await app.processMessages(messages, { onPartialResponse });
+  // This hides the warning thrown by function
+  vitest.spyOn(console, 'warn').mockImplementationOnce(() => undefined);
 
-  expect(result.response).toEqual({
-    content:
-      'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    role: 'assistant',
-    usage: {
-      model: 'test',
-      inputTokens: 1,
-      outputTokens: 17,
-      requests: 1,
-      responseTime: 0,
-    },
-  });
+  await app.processMessages(messages, { onPartialResponse });
 
-  expect(messages.at(-1)?.role).toBe('user');
-  expect(mockConsole.mock.calls[0][0]).toContain(
-    'Ignoring 2 lastest messages, as it was from Assistant.',
-  );
+  // confirms that main messages were not mutated
+  expect(messages).toEqual([
+    { role: 'user', content: 'Hello' },
+    { role: 'assistant', content: 'Hi!' },
+    { role: 'assistant', content: 'Sup!' },
+  ]);
+  expect(processRequest).toHaveReturnedWith('Response text');
 });

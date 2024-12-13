@@ -79,9 +79,9 @@ export function createApp(config: ApplicationConfig): Application {
       messages: Message[],
       options?: ProcessMessageOptions,
     ): Promise<ProcessMessageResult> => {
-      removeLastAssistantMessage(messages);
+      const cleanMessages = ignoreLastAssistantMessage(messages);
 
-      const lastMessage = messages.at(-1);
+      const lastMessage = cleanMessages.at(-1);
 
       logger.debug(`Processing message for user: ${lastMessage?.senderId}`);
 
@@ -89,7 +89,7 @@ export function createApp(config: ApplicationConfig): Application {
       performance.markStart(PerformanceMarks.processMessages);
 
       const context: RequestContext = {
-        messages,
+        messages: cleanMessages,
         get lastMessage() {
           const lastMessage = this.messages.at(-1);
           // This will normally be true, unless the middleware
@@ -158,17 +158,20 @@ export function createApp(config: ApplicationConfig): Application {
 }
 
 // Making "UserMessage" a newest one
-function removeLastAssistantMessage(messages: Message[]) {
+function ignoreLastAssistantMessage(messages: Message[]) {
+  let cleanedMessages = [...messages];
   let ignoredCount = 0;
 
-  while (messages.at(-1)?.role === 'assistant') {
-    messages.pop();
+  while (cleanedMessages.at(-1)?.role === 'assistant') {
+    cleanedMessages = cleanedMessages.slice(undefined, cleanedMessages.length - 1);
     ignoredCount++;
   }
 
   if (ignoredCount > 0) {
     logger.warn(`Ignoring ${ignoredCount} lastest messages, as it was from Assistant.`);
   }
+
+  return cleanedMessages;
 }
 
 function defaultErrorHandler(error: unknown, _context: RequestContext): SystemResponse {
