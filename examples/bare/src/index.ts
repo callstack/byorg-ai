@@ -55,10 +55,8 @@ rl.on('line', async (line: string) => {
   process.stdout.write('\n');
   process.stdout.write('ai: ');
 
-  let currentMessage = '';
   const { response } = await app.processMessages(messages, {
     onPartialResponse: (_text: string, delta: string) => {
-      currentMessage += delta;
       process.stdout.write(delta);
     },
   });
