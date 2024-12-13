@@ -11,12 +11,10 @@ import {
 } from './types.js';
 import { fetchFileInfo, getThread } from './slack-api.js';
 import { formatGroupMessage, toCoreMessage } from './messages.js';
-import { wait } from './utils.js';
 import { getBotId } from './bot-id.js';
 
 type MessageBlock = RichTextBlock | ContextBlock;
 
-const UPDATE_THROTTLE_TIME = 1000;
 const NOTIFICATION_TEXT_LIMIT = 200;
 
 const RESPONDING_BLOCK: MessageBlock = {
@@ -33,7 +31,7 @@ export function createSlackApp(options: SlackApplicationConfig): Slack.App {
     logLevel: options.logLevel ?? LogLevel.WARN,
   });
 
-  configureSlackApp(options.app, app);
+  configureSlackApp(options.app, app, options.streamingThrottle);
   return app;
 }
 
@@ -43,7 +41,11 @@ type HandleMessageContext = {
   say: SayFn;
 };
 
-function configureSlackApp(app: Application, slack: Slack.App): void {
+function configureSlackApp(
+  app: Application,
+  slack: Slack.App,
+  streamingThrottleTime: number = 3000,
+): void {
   const handleMessage = async (
     slackMessage: SlackMessage,
     { conversationMode, client, say }: HandleMessageContext,
@@ -76,6 +78,8 @@ function configureSlackApp(app: Application, slack: Slack.App): void {
     logger.debug(`[SLACK] Request has ${lastMessage?.attachments?.length ?? 0} attachment(s)`);
 
     let responseMessageTs: string | null = null;
+    let finishedStreaming = false;
+    const abortController = new AbortController();
 
     const updateResponseMessage = async (content: string, isFinalResponse = false) => {
       logger.debug('[SLACK] Sending response message... ');
@@ -83,6 +87,24 @@ function configureSlackApp(app: Application, slack: Slack.App): void {
       const richTextBlock = parseMarkdownToRichTextBlock(content);
       const blocks = isFinalResponse ? [richTextBlock] : [richTextBlock, RESPONDING_BLOCK];
 
+      // Not final response, so waiting for more text
+      if (!isFinalResponse) {
+        await new Promise((resolve) => {
+          const timeout = setTimeout(resolve, streamingThrottleTime);
+          abortController.signal.addEventListener('abort', () => {
+            clearTimeout(timeout);
+            resolve(null);
+            finishedStreaming = true;
+          });
+        });
+      }
+
+      // Finished streaming so not sending last update
+      if (finishedStreaming && !isFinalResponse) {
+        return;
+      }
+
+      // Sending first message
       if (!responseMessageTs) {
         const responseMessage = await say({
           channel,
@@ -92,10 +114,10 @@ function configureSlackApp(app: Application, slack: Slack.App): void {
         });
         responseMessageTs = responseMessage.ts as string;
 
-        await wait(UPDATE_THROTTLE_TIME);
         return;
       }
 
+      // Sending update to message
       await client.chat.update({
         channel,
         ts: responseMessageTs,
@@ -104,7 +126,6 @@ function configureSlackApp(app: Application, slack: Slack.App): void {
         parse: 'none',
       });
 
-      await wait(UPDATE_THROTTLE_TIME);
       return;
     };
 
@@ -125,7 +146,12 @@ function configureSlackApp(app: Application, slack: Slack.App): void {
     logger.info(`[SLACK] Processed message in ${responseTime.toFixed(0)} ms`);
 
     // Wait for the last update to finish
+    abortController.abort();
+    console.log('AwaitingStart');
+
     await updatePartialResponsePromise;
+
+    console.log('Awaiting stopp');
 
     await updateResponseMessage(response.content, true);
     logger.debug('[SLACK] Sent final response.');
