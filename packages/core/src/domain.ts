@@ -31,7 +31,7 @@ export type RequestContext = {
   references: ReferenceStorage;
   resolvedEntities: EntityInfo;
   systemPrompt: () => string | null;
-  onPartialResponse?: (text: string) => void;
+  onPartialResponse?: (text: string, delta: string) => void;
   extras: MessageRequestExtras;
   performance: PerformanceTimeline;
 };

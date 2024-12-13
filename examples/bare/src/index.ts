@@ -57,8 +57,7 @@ rl.on('line', async (line: string) => {
 
   let currentMessage = '';
   const { response } = await app.processMessages(messages, {
-    onPartialResponse: (text: string) => {
-      const delta = text.slice(currentMessage.length);
+    onPartialResponse: (_text: string, delta: string) => {
       currentMessage += delta;
       process.stdout.write(delta);
     },

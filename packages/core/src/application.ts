@@ -49,7 +49,7 @@ export type Effect = (context: RequestContext, response: MessageResponse) => Pro
 
 export type ProcessMessageOptions = {
   extras?: MessageRequestExtras;
-  onPartialResponse?: (partialText: string) => void;
+  onPartialResponse?: (partialText: string, delta: string) => void;
 };
 
 export function createApp(config: ApplicationConfig): Application {
