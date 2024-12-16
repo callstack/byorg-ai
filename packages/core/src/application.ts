@@ -32,7 +32,7 @@ export type ErrorHandler = (
 ) => Promise<MessageResponse> | MessageResponse;
 
 export type ApplicationConfig = {
-  chatModel: ChatModel | ((context: RequestContext) => ChatModel);
+  chatModel: ChatModel;
   systemPrompt?: ((context: RequestContext) => string | null) | string;
   plugins?: ApplicationPlugin[];
   errorHandler?: ErrorHandler;
@@ -49,14 +49,14 @@ export type Effect = (context: RequestContext, response: MessageResponse) => Pro
 
 export type ProcessMessageOptions = {
   extras?: MessageRequestExtras;
-  onPartialResponse?: (partialText: string) => void;
+  onPartialResponse?: (partialText: string, delta: string) => void;
 };
 
 export function createApp(config: ApplicationConfig): Application {
-  const { plugins = [], chatModel, errorHandler = defaultErrorHandler } = config;
+  const { plugins = [], errorHandler = defaultErrorHandler } = config;
 
   plugins.forEach((plugin) => {
-    logger.info(`Plugin "${plugin.name}" registered`);
+    logger.debug(`Plugin "${plugin.name}" registered`);
   });
 
   const middlewares: Middleware[] = [
@@ -68,7 +68,7 @@ export function createApp(config: ApplicationConfig): Application {
 
   // TODO: Validate
   tools.forEach((tool) => {
-    logger.info(`Tool "${tool.name}" registered`);
+    logger.debug(`Tool "${tool.name}" registered`);
   });
 
   const middlewareExecutor = new MiddlewareHandler();
@@ -99,6 +99,7 @@ export function createApp(config: ApplicationConfig): Application {
 
           return lastMessage;
         },
+        chatModel: config.chatModel,
         systemPrompt: () =>
           typeof config.systemPrompt === 'function'
             ? config.systemPrompt(context)
@@ -116,8 +117,7 @@ export function createApp(config: ApplicationConfig): Application {
         performance.markEnd(PerformanceMarks.middlewareBeforeHandler);
 
         performance.markStart(PerformanceMarks.chatModel);
-        const resolvedChatModel = typeof chatModel === 'function' ? chatModel(context) : chatModel;
-        const response = await resolvedChatModel.generateResponse(context);
+        const response = await context.chatModel.generateResponse(context);
         performance.markEnd(PerformanceMarks.chatModel);
 
         // Opens the 'middleware:afterHandler' mark that will be closed after middlewareExecutor has run

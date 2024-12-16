@@ -1,6 +1,6 @@
 import { expect, test, vitest } from 'vitest';
 import { createApp } from '../application.js';
-import { Message, RequestContext } from '../domain.js';
+import { Message, MessageResponse, RequestContext } from '../domain.js';
 import { createMockChatModel } from '../mock/mock-model.js';
 
 const messages: Message[] = [{ role: 'user', content: 'Hello' }];
@@ -114,4 +114,28 @@ test('removes trailing assistant messages', async () => {
 
   expect(processRequest).toHaveBeenCalledOnce();
   expect(processRequest.mock.calls[0][0]['messages']).toEqual([{ role: 'user', content: 'Hello' }]);
+});
+
+test('uses chat model from context', async () => {
+  const baseModel = createMockChatModel({ delay: 0, seed: 3 });
+  const altModel = createMockChatModel({ delay: 0, seed: 3 });
+
+  async function altModelMiddleware(context: RequestContext, next: () => Promise<MessageResponse>) {
+    context.chatModel = altModel;
+    return await next();
+  }
+
+  const app = createApp({
+    chatModel: baseModel,
+    plugins: [
+      {
+        name: 'middleware',
+        middleware: altModelMiddleware,
+      },
+    ],
+  });
+
+  await app.processMessages(messages);
+  expect(altModel.calls.length).toBe(1);
+  expect(baseModel.calls.length).toBe(0);
 });

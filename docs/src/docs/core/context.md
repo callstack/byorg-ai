@@ -23,14 +23,17 @@ export type RequestContext = {
   /** Ids of users who are a part of conversation */
   resolvedEntities: EntityInfo;
 
-  /** Function for generating a system prompt */
+  /** Chat model instance */
+  chatModel: ChatModel;
+
+  /** Function generating a system prompt (bound to the context) */
   systemPrompt: () => string | null;
 
   /** 
    * Received partial response update with response streaming.
    * Note: setting this option will switch underlying assistant calls to streaming format. 
    */
-  onPartialResponse?: (text: string) => void;
+  onPartialResponse?: (text: string, delta: string) => void;
 
   /** Measures and marks for performance tracking */
   performance: PerformanceTimeline;

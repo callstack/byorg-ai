@@ -16,9 +16,6 @@ import { RequestContext, Message } from '../domain.js';
 import { ApplicationTool } from '../tools.js';
 import type { ChatModel, AssistantResponse, ModelUsage } from './types.js';
 
-const DEFAULT_MAX_TOKENS = 1024;
-const DEFAULT_MAX_STEPS = 5;
-
 // Workaround for memory issue happening when sending image attachment. The attachments get inefficiently serialised causing a memory spike.
 const VERCEL_AI_SHARED_OPTIONS = {
   experimental_telemetry: {
@@ -121,22 +118,22 @@ export class VercelChatModelAdapter implements ChatModel {
 
   private async executeRequestWithStreaming(
     context: AiExecutionContext,
-    onPartialResponse: (text: string) => void,
+    onPartialResponse: (text: string, delta: string) => void,
   ): Promise<AiExecutionResult> {
     const startTime = performance.now();
     const result = await streamText({
       ...VERCEL_AI_SHARED_OPTIONS,
       model: this._options.languageModel,
-      maxTokens: this._options.maxTokens ?? DEFAULT_MAX_TOKENS,
-      maxSteps: this._options.maxSteps ?? DEFAULT_MAX_STEPS,
       messages: context.messages,
+      maxTokens: this._options.maxTokens,
+      maxSteps: this._options.maxSteps,
       tools: context.tools,
     });
 
     let currentText = '';
     for await (const textDelta of result.textStream) {
       currentText += textDelta;
-      onPartialResponse(currentText);
+      onPartialResponse(currentText, textDelta);
     }
     const responseTime = performance.now() - startTime;
 
@@ -160,9 +157,9 @@ export class VercelChatModelAdapter implements ChatModel {
     const result = await generateText({
       ...VERCEL_AI_SHARED_OPTIONS,
       model: this._options.languageModel,
-      maxTokens: this._options.maxTokens ?? DEFAULT_MAX_TOKENS,
-      maxSteps: this._options.maxSteps ?? DEFAULT_MAX_STEPS,
       messages: context.messages,
+      maxTokens: this._options.maxTokens,
+      maxSteps: this._options.maxSteps,
       tools: context.tools,
     });
     const responseTime = performance.now() - startTime;

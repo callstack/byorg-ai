@@ -20,14 +20,22 @@ export type MockChatModelConfig = {
   processRequest?: (context: RequestContext) => string;
 };
 
-export function createMockChatModel(config?: MockChatModelConfig): ChatModel {
+export type MockChatModel = ChatModel & {
+  calls: Parameters<ChatModel['generateResponse']>[];
+};
+
+export function createMockChatModel(config?: MockChatModelConfig): MockChatModel {
   const responses = config?.responses ?? LOREM_IPSUM_RESPONSES;
   const delay = config?.delay ?? 100;
   const processRequest = config?.processRequest;
 
+  const calls: Parameters<ChatModel['generateResponse']>[] = [];
+
   let lastRandom = config?.seed ?? Date.now();
   return {
+    calls,
     generateResponse: async (context: RequestContext): Promise<AssistantResponse> => {
+      calls.push([context]);
       lastRandom = random(lastRandom);
 
       const response = processRequest
@@ -40,7 +48,7 @@ export function createMockChatModel(config?: MockChatModelConfig): ChatModel {
         for (const token of tokens) {
           await sleep(delay);
           accumulator += token;
-          context.onPartialResponse(accumulator);
+          context.onPartialResponse(accumulator, token);
         }
       }
 
