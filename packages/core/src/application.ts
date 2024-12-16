@@ -7,6 +7,7 @@ import {
   MessageResponse,
   SystemResponse,
   Message,
+  UserMessage,
 } from './domain.js';
 import { Middleware, MiddlewareHandler } from './middleware.js';
 import { PerformanceTimeline } from './performance.js';
@@ -79,21 +80,19 @@ export function createApp(config: ApplicationConfig): Application {
       messages: Message[],
       options?: ProcessMessageOptions,
     ): Promise<ProcessMessageResult> => {
+      messages = normalizeMessages(messages);
       const lastMessage = messages.at(-1);
-      if (lastMessage?.role !== 'user') {
-        throw new Error('Last message in the "messages" list should be a "UserMessage"');
-      }
 
-      logger.debug(`Processing message for user: ${lastMessage.senderId}`);
+      logger.debug(`Processing message for user: ${lastMessage?.senderId}`);
 
       const performance = new PerformanceTimeline();
       performance.markStart(PerformanceMarks.processMessages);
 
       const context: RequestContext = {
         messages,
-        get lastMessage() {
+        get lastMessage(): UserMessage {
           const lastMessage = this.messages.at(-1);
-          // This will normally be true, unless the middleware
+          // This will normally be true, unless the middleware changes the messages
           if (lastMessage?.role !== 'user') {
             throw new Error('Last message in the "messages" list should be a "UserMessage"');
           }
@@ -156,6 +155,19 @@ export function createApp(config: ApplicationConfig): Application {
       return { response, pendingEffects };
     },
   };
+}
+
+// Removes trailling assistant messages in order to make UserMessage the last one
+function normalizeMessages(messages: Message[]) {
+  const lastUserMessageIndex = messages.findLastIndex((m) => m.role === 'user');
+  if (lastUserMessageIndex === messages.length - 1) {
+    return messages;
+  }
+
+  const result = messages.slice(0, lastUserMessageIndex + 1);
+  logger.warn(`Ignored ${messages.length - result.length} trailing assistant message(s).`);
+
+  return result;
 }
 
 function defaultErrorHandler(error: unknown, _context: RequestContext): SystemResponse {

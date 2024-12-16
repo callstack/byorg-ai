@@ -70,6 +70,50 @@ test('basic streaming test', async () => {
   await expect(result.pendingEffects).resolves.toEqual([]);
 });
 
+test('removes trailing assistant messages', async () => {
+  const processRequest = vitest.fn((_context: RequestContext) => {
+    return 'Response text';
+  });
+
+  const testModel = createMockChatModel({
+    delay: 0,
+    seed: 3,
+    processRequest,
+  });
+
+  const messages: Message[] = [
+    { role: 'user', content: 'Hello' },
+    { role: 'assistant', content: 'Hi!' },
+    { role: 'assistant', content: 'Sup!' },
+  ];
+
+  Object.freeze(messages);
+
+  const app = createApp({
+    chatModel: testModel,
+  });
+
+  const onPartialResponse = vitest.fn();
+
+  // This hides the warning thrown by function
+  const consoleSpy = vitest.spyOn(console, 'warn').mockImplementationOnce(() => undefined);
+
+  await app.processMessages(messages, { onPartialResponse });
+
+  // confirms that main messages were not mutated
+  expect(messages).toEqual([
+    { role: 'user', content: 'Hello' },
+    { role: 'assistant', content: 'Hi!' },
+    { role: 'assistant', content: 'Sup!' },
+  ]);
+
+  expect(consoleSpy).toHaveBeenCalledOnce();
+  expect(consoleSpy.mock.calls[0][0]).toContain('Ignored 2 trailing assistant message(s).');
+
+  expect(processRequest).toHaveBeenCalledOnce();
+  expect(processRequest.mock.calls[0][0]['messages']).toEqual([{ role: 'user', content: 'Hello' }]);
+});
+
 test('uses chat model from context', async () => {
   const baseModel = createMockChatModel({ delay: 0, seed: 3 });
   const altModel = createMockChatModel({ delay: 0, seed: 3 });

@@ -17,6 +17,7 @@ export type MockChatModelConfig = {
   responses?: string[];
   delay?: number;
   seed?: number;
+  processRequest?: (context: RequestContext) => string;
 };
 
 export type MockChatModel = ChatModel & {
@@ -26,6 +27,7 @@ export type MockChatModel = ChatModel & {
 export function createMockChatModel(config?: MockChatModelConfig): MockChatModel {
   const responses = config?.responses ?? LOREM_IPSUM_RESPONSES;
   const delay = config?.delay ?? 100;
+  const processRequest = config?.processRequest;
 
   const calls: Parameters<ChatModel['generateResponse']>[] = [];
 
@@ -36,7 +38,9 @@ export function createMockChatModel(config?: MockChatModelConfig): MockChatModel
       calls.push([context]);
       lastRandom = random(lastRandom);
 
-      const response = responses[lastRandom % responses.length];
+      const response = processRequest
+        ? processRequest(context)
+        : responses[lastRandom % responses.length];
       const tokens = response.split(/(\S+\s*)/).filter(Boolean);
 
       if (context.onPartialResponse) {
