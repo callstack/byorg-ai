@@ -7,6 +7,7 @@ import {
   MessageResponse,
   SystemResponse,
   Message,
+  UserMessage,
 } from './domain.js';
 import { Middleware, MiddlewareHandler } from './middleware.js';
 import { PerformanceTimeline } from './performance.js';
@@ -79,9 +80,8 @@ export function createApp(config: ApplicationConfig): Application {
       messages: Message[],
       options?: ProcessMessageOptions,
     ): Promise<ProcessMessageResult> => {
-      const cleanMessages = normalizeMessages(messages);
-
-      const lastMessage = cleanMessages.at(-1);
+      messages = normalizeMessages(messages);
+      const lastMessage = messages.at(-1);
 
       logger.debug(`Processing message for user: ${lastMessage?.senderId}`);
 
@@ -89,10 +89,10 @@ export function createApp(config: ApplicationConfig): Application {
       performance.markStart(PerformanceMarks.processMessages);
 
       const context: RequestContext = {
-        messages: cleanMessages,
-        get lastMessage() {
+        messages,
+        get lastMessage(): UserMessage {
           const lastMessage = this.messages.at(-1);
-          // This will normally be true, unless the middleware
+          // This will normally be true, unless the middleware changes the messages
           if (lastMessage?.role !== 'user') {
             throw new Error('Last message in the "messages" list should be a "UserMessage"');
           }
@@ -159,17 +159,13 @@ export function createApp(config: ApplicationConfig): Application {
 
 // Removes trailling assistant messages in order to make UserMessage the last one
 function normalizeMessages(messages: Message[]) {
-  let result = [...messages];
-
-  const lastUserMessageIndex = result.findLastIndex((m) => m.role === 'user');
-  if (lastUserMessageIndex !== result.length - 1) {
-    result = result.slice(0, lastUserMessageIndex + 1);
-
-    const ignoredCount = messages.length - result.length;
-    if (ignoredCount > 0) {
-      logger.warn(`Ignored ${ignoredCount} trailing assistant message(s).`);
-    }
+  const lastUserMessageIndex = messages.findLastIndex((m) => m.role === 'user');
+  if (lastUserMessageIndex === messages.length - 1) {
+    return messages;
   }
+
+  const result = messages.slice(0, lastUserMessageIndex + 1);
+  logger.warn(`Ignored ${messages.length - result.length} trailing assistant message(s).`);
 
   return result;
 }
