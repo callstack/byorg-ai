@@ -1,5 +1,5 @@
 import { ApplicationTool } from './tools.js';
-import type { AssistantResponse } from './ai/types.js';
+import type { AssistantResponse, ChatModel } from './ai/types.js';
 import { ReferenceStorage } from './references.js';
 import { PerformanceTimeline } from './performance.js';
 
@@ -30,6 +30,7 @@ export type RequestContext = {
   tools: ApplicationTool[];
   references: ReferenceStorage;
   resolvedEntities: EntityInfo;
+  chatModel: ChatModel;
   systemPrompt: () => string | null;
   onPartialResponse?: (text: string) => void;
   extras: MessageRequestExtras;
