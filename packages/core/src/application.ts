@@ -53,7 +53,7 @@ export type ProcessMessageOptions = {
 };
 
 export function createApp(config: ApplicationConfig): Application {
-  const { plugins = [], chatModel, errorHandler = defaultErrorHandler } = config;
+  const { plugins = [], errorHandler = defaultErrorHandler } = config;
 
   plugins.forEach((plugin) => {
     logger.info(`Plugin "${plugin.name}" registered`);
