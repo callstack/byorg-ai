@@ -2,7 +2,7 @@ import { ApplicationPlugin, MessageResponse } from '@callstack/byorg-core';
 import { logger } from '@callstack/byorg-utils';
 
 export const slackThreadNormalizerPlugin: ApplicationPlugin = {
-  name: 'slack-thread-normalizer-resolver',
+  name: 'slack-thread-normalizer',
   middleware: async (context, next): Promise<MessageResponse> => {
     const { messages } = context;
 
