@@ -159,22 +159,19 @@ export function createApp(config: ApplicationConfig): Application {
 
 // Removes trailling assistant messages in order to make UserMessage the last one
 function normalizeMessages(messages: Message[]) {
-  let cleanedMessages = [...messages];
-  let ignoredCount = 0;
+  let result = [...messages];
 
-  const lastUserMessageIndex = cleanedMessages.findLastIndex((message) => message.role === 'user');
-  const lastMessageIndex = cleanedMessages.length - 1;
-
-  if (lastUserMessageIndex !== lastMessageIndex) {
-    cleanedMessages = cleanedMessages.slice(0, lastUserMessageIndex + 1);
-    ignoredCount = lastMessageIndex - lastUserMessageIndex;
+  const lastUserMessageIndex = result.findLastIndex((m) => m.role === 'user');
+  if (lastUserMessageIndex !== cleanedMessages.length - 1) {
+    result = result.slice(0, lastUserMessageIndex + 1);
+    
+    const ignoredCount = messages.length - result.length;
+    if (ignoredCount > 0) {
+      logger.warn(`Ignored ${ignoredCount} trailing assistant message(s).`);
+    }
   }
 
-  if (ignoredCount > 0) {
-    logger.warn(`Ignoring ${ignoredCount} latest messages, as it was from Assistant.`);
-  }
-
-  return cleanedMessages;
+  return result;
 }
 
 function defaultErrorHandler(error: unknown, _context: RequestContext): SystemResponse {
