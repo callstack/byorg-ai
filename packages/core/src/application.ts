@@ -56,7 +56,7 @@ export function createApp(config: ApplicationConfig): Application {
   const { plugins = [], chatModel, errorHandler = defaultErrorHandler } = config;
 
   plugins.forEach((plugin) => {
-    logger.info(`Plugin "${plugin.name}" registered`);
+    logger.debug(`Plugin "${plugin.name}" registered`);
   });
 
   const middlewares: Middleware[] = [
@@ -68,7 +68,7 @@ export function createApp(config: ApplicationConfig): Application {
 
   // TODO: Validate
   tools.forEach((tool) => {
-    logger.info(`Tool "${tool.name}" registered`);
+    logger.debug(`Tool "${tool.name}" registered`);
   });
 
   const middlewareExecutor = new MiddlewareHandler();

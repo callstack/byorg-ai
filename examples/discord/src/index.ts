@@ -34,6 +34,6 @@ void (async () => {
     await discord.login(DISCORD_BOT_TOKEN);
     logger.info('Discord ready.');
   } catch (error) {
-    logger.error('Dev Slack start error:', error);
+    logger.error('Dev Discord start error:', error);
   }
 })();
