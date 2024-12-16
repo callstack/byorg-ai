@@ -79,7 +79,7 @@ export function createApp(config: ApplicationConfig): Application {
       messages: Message[],
       options?: ProcessMessageOptions,
     ): Promise<ProcessMessageResult> => {
-      const cleanMessages = ignoreLastAssistantMessage(messages);
+      const cleanMessages = normalizeMessages(messages);
 
       const lastMessage = cleanMessages.at(-1);
 
@@ -157,18 +157,21 @@ export function createApp(config: ApplicationConfig): Application {
   };
 }
 
-// Making "UserMessage" a newest one
-function ignoreLastAssistantMessage(messages: Message[]) {
+// Removes trailling assistant messages in order to make UserMessage the last one
+function normalizeMessages(messages: Message[]) {
   let cleanedMessages = [...messages];
   let ignoredCount = 0;
 
-  while (cleanedMessages.at(-1)?.role === 'assistant') {
-    cleanedMessages = cleanedMessages.slice(undefined, cleanedMessages.length - 1);
-    ignoredCount++;
+  const lastUserMessageIndex = cleanedMessages.findLastIndex((message) => message.role === 'user');
+  const lastMessageIndex = cleanedMessages.length - 1;
+
+  if (lastUserMessageIndex !== lastMessageIndex) {
+    cleanedMessages = cleanedMessages.slice(0, lastUserMessageIndex + 1);
+    ignoredCount = lastMessageIndex - lastUserMessageIndex;
   }
 
   if (ignoredCount > 0) {
-    logger.warn(`Ignoring ${ignoredCount} lastest messages, as it was from Assistant.`);
+    logger.warn(`Ignoring ${ignoredCount} latest messages, as it was from Assistant.`);
   }
 
   return cleanedMessages;

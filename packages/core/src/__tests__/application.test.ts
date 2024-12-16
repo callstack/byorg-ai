@@ -70,9 +70,8 @@ test('basic streaming test', async () => {
   await expect(result.pendingEffects).resolves.toEqual([]);
 });
 
-test('removing last assistant messages to make usermessage the newest', async () => {
-  const processRequest = vitest.fn((context: RequestContext) => {
-    expect(context.messages).toEqual([{ role: 'user', content: 'Hello' }]);
+test('removes trailing assistant messages', async () => {
+  const processRequest = vitest.fn((_context: RequestContext) => {
     return 'Response text';
   });
 
@@ -88,6 +87,8 @@ test('removing last assistant messages to make usermessage the newest', async ()
     { role: 'assistant', content: 'Sup!' },
   ];
 
+  Object.freeze(messages);
+
   const app = createApp({
     chatModel: testModel,
   });
@@ -95,7 +96,7 @@ test('removing last assistant messages to make usermessage the newest', async ()
   const onPartialResponse = vitest.fn();
 
   // This hides the warning thrown by function
-  vitest.spyOn(console, 'warn').mockImplementationOnce(() => undefined);
+  const consoleSpy = vitest.spyOn(console, 'warn').mockImplementationOnce(() => undefined);
 
   await app.processMessages(messages, { onPartialResponse });
 
@@ -105,5 +106,12 @@ test('removing last assistant messages to make usermessage the newest', async ()
     { role: 'assistant', content: 'Hi!' },
     { role: 'assistant', content: 'Sup!' },
   ]);
-  expect(processRequest).toHaveReturnedWith('Response text');
+
+  expect(consoleSpy).toHaveBeenCalledOnce();
+  expect(consoleSpy.mock.calls[0][0]).toContain(
+    'Ignoring 2 latest messages, as it was from Assistant.',
+  );
+
+  expect(processRequest).toHaveBeenCalledOnce();
+  expect(processRequest.mock.calls[0][0]['messages']).toEqual([{ role: 'user', content: 'Hello' }]);
 });
