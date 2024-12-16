@@ -33,9 +33,10 @@
     "ts-regex-builder": "^1.8.2"
   },
   "peerDependencies": {
-    "@slack/web-api": "^6.11.2"
+    "@slack/web-api": "^7.8.0"
   },
   "devDependencies": {
+    "@slack/web-api": "^7.8.0",
     "@microsoft/api-extractor": "catalog:",
     "@rslib/core": "catalog:",
     "vitest": "^2.1.3"
