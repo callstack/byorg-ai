@@ -118,7 +118,7 @@ export class VercelChatModelAdapter implements ChatModel {
 
   private async executeRequestWithStreaming(
     context: AiExecutionContext,
-    onPartialResponse: (text: string) => void,
+    onPartialResponse: (text: string, delta: string) => void,
   ): Promise<AiExecutionResult> {
     const startTime = performance.now();
     const result = await streamText({
@@ -133,7 +133,7 @@ export class VercelChatModelAdapter implements ChatModel {
     let currentText = '';
     for await (const textDelta of result.textStream) {
       currentText += textDelta;
-      onPartialResponse(currentText);
+      onPartialResponse(currentText, textDelta);
     }
     const responseTime = performance.now() - startTime;
 

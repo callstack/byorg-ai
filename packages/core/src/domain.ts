@@ -32,7 +32,7 @@ export type RequestContext = {
   resolvedEntities: EntityInfo;
   chatModel: ChatModel;
   systemPrompt: () => string | null;
-  onPartialResponse?: (text: string) => void;
+  onPartialResponse?: (text: string, delta: string) => void;
   extras: MessageRequestExtras;
   performance: PerformanceTimeline;
 };

@@ -47,7 +47,7 @@ export function createDiscordApp(options: DiscordApplicationConfig) {
 
     let replyMessage: Message | null = null;
 
-    const updateResponseMessage = async (content: string) => {
+    const updateResponseMessage = async (content: string, _delta?: string) => {
       if (!replyMessage) {
         replyMessage = await discordMessage.reply(content);
         return;
@@ -59,8 +59,8 @@ export function createDiscordApp(options: DiscordApplicationConfig) {
     let updatePartialResponsePromise: Promise<void> = Promise.resolve();
     const handlePartialResponse = throttle(updateResponseMessage, UPDATE_THROTTLE_TIME);
 
-    const onPartialResponse = (response: string) => {
-      updatePartialResponsePromise = handlePartialResponse(response);
+    const onPartialResponse = (response: string, delta: string) => {
+      updatePartialResponsePromise = handlePartialResponse(response, delta);
     };
 
     const { response, pendingEffects } = await app.processMessages(messages, {

@@ -33,7 +33,7 @@ export type RequestContext = {
    * Received partial response update with response streaming.
    * Note: setting this option will switch underlying assistant calls to streaming format. 
    */
-  onPartialResponse?: (text: string) => void;
+  onPartialResponse?: (text: string, delta: string) => void;
 
   /** Measures and marks for performance tracking */
   performance: PerformanceTimeline;

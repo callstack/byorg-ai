@@ -44,7 +44,7 @@ export function createMockChatModel(config?: MockChatModelConfig): MockChatModel
         for (const token of tokens) {
           await sleep(delay);
           accumulator += token;
-          context.onPartialResponse(accumulator);
+          context.onPartialResponse(accumulator, token);
         }
       }
 
