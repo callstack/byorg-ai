@@ -162,9 +162,9 @@ function normalizeMessages(messages: Message[]) {
   let result = [...messages];
 
   const lastUserMessageIndex = result.findLastIndex((m) => m.role === 'user');
-  if (lastUserMessageIndex !== cleanedMessages.length - 1) {
+  if (lastUserMessageIndex !== result.length - 1) {
     result = result.slice(0, lastUserMessageIndex + 1);
-    
+
     const ignoredCount = messages.length - result.length;
     if (ignoredCount > 0) {
       logger.warn(`Ignored ${ignoredCount} trailing assistant message(s).`);

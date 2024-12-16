@@ -108,9 +108,7 @@ test('removes trailing assistant messages', async () => {
   ]);
 
   expect(consoleSpy).toHaveBeenCalledOnce();
-  expect(consoleSpy.mock.calls[0][0]).toContain(
-    'Ignoring 2 latest messages, as it was from Assistant.',
-  );
+  expect(consoleSpy.mock.calls[0][0]).toContain('Ignored 2 trailing assistant message(s).');
 
   expect(processRequest).toHaveBeenCalledOnce();
   expect(processRequest.mock.calls[0][0]['messages']).toEqual([{ role: 'user', content: 'Hello' }]);
