@@ -28,7 +28,7 @@ export { VercelChatModelAdapter } from './ai/vercel.js';
 
 export type { Command, CommandsPluginConfig } from './plugins/commands.js';
 export { createCommandsPlugin } from './plugins/commands.js';
-export { loggingPlugin } from './plugins/logging.js';
+export { loggingPlugin, contextLoggerBuilder } from './plugins/logging.js';
 
 export type { ApplicationTool } from './tools.js';
 

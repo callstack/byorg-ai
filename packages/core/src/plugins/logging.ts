@@ -1,4 +1,6 @@
-import { ApplicationPlugin, MessageResponse } from '../index.js';
+import { inspect } from 'util';
+import { logger } from '@callstack/byorg-utils';
+import { ApplicationPlugin, MessageResponse, RequestContext } from '../index.js';
 
 const getFormattedNow = () => new Date().toISOString();
 
@@ -22,4 +24,28 @@ export const loggingPlugin: ApplicationPlugin = {
       throw error;
     }
   },
+};
+
+export const contextLoggerBuilder = (fieldsToLog: (keyof RequestContext)[]): ApplicationPlugin => {
+  return {
+    name: 'context-logger',
+    middleware: (context, next): Promise<MessageResponse> => {
+      const toLog: Record<string, unknown> = {};
+
+      for (const field of fieldsToLog) {
+        if (field in context) {
+          toLog[field] = context[field];
+        } else {
+          logger.debug(`No ${field} in context.`);
+        }
+      }
+
+      if (Object.keys(toLog).length > 0) {
+        console.log(inspect(toLog, false, null, true));
+      }
+
+      // Continue middleware chain
+      return next();
+    },
+  };
 };
