@@ -1,5 +1,19 @@
 # @callstack/byorg-core
 
+## 0.7.0
+
+### Minor Changes
+
+- 3770dfb: core: chatModel is customizable using RequestContext, removed default maxTokens and maxSteps values
+- 4463e11: core: pass delta as 2nd param to onPartialUpdate
+
+### Patch Changes
+
+- 6152fb3: core: fix for a case when user message isn't the newest one
+- d6b3e3a: core: reduce some of the startup logs severity to debug
+- Updated dependencies [d6b3e3a]
+  - @callstack/byorg-utils@0.7.0
+
 ## 0.6.0
 
 ### Minor Changes

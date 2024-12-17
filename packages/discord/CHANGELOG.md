@@ -1,5 +1,19 @@
 # @callstack/byorg-discord
 
+## 0.7.0
+
+### Minor Changes
+
+- 4463e11: core: pass delta as 2nd param to onPartialUpdate
+
+### Patch Changes
+
+- Updated dependencies [6152fb3]
+- Updated dependencies [d6b3e3a]
+- Updated dependencies [3770dfb]
+- Updated dependencies [4463e11]
+  - @callstack/byorg-core@0.7.0
+
 ## 0.6.0
 
 ### Patch Changes

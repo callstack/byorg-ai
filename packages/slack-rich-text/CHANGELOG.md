@@ -1,5 +1,11 @@
 # @callstack/slack-rich-text
 
+## 0.7.0
+
+### Patch Changes
+
+- 1b5d925: Updated peer depenendcies
+
 ## 0.6.0
 
 ## 0.5.0

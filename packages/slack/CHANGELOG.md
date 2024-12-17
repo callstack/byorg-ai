@@ -1,5 +1,19 @@
 # @callstack/byorg-slack
 
+## 0.7.0
+
+### Patch Changes
+
+- 251f05a: plugin for normalizing threads when using "Slack AI apps"
+- Updated dependencies [6152fb3]
+- Updated dependencies [d6b3e3a]
+- Updated dependencies [1b5d925]
+- Updated dependencies [3770dfb]
+- Updated dependencies [4463e11]
+  - @callstack/byorg-core@0.7.0
+  - @callstack/byorg-utils@0.7.0
+  - @callstack/slack-rich-text@0.7.0
+
 ## 0.6.0
 
 ### Minor Changes

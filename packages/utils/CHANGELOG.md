@@ -1,5 +1,11 @@
 # @callstack/byorg-utils
 
+## 0.7.0
+
+### Patch Changes
+
+- d6b3e3a: core: reduce some of the startup logs severity to debug
+
 ## 0.6.0
 
 ## 0.5.0
