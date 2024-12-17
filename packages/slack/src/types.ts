@@ -27,6 +27,7 @@ export type SlackApplicationConfig = {
   appToken: string;
   signingSecret: string;
   logLevel?: Slack.LogLevel;
+  streamingThrottle?: number;
 };
 
 // Helper TS function to extract types eg. messages?: Message[] into Message
