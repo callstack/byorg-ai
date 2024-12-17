@@ -29,7 +29,7 @@ const VERCEL_AI_SHARED_OPTIONS = {
   },
 };
 
-export type VercelChatModelAdapterOptions = {
+export type VercelChatModelAdapterConfig = {
   languageModel: LanguageModel;
   maxTokens?: number;
   maxSteps?: number;
@@ -51,7 +51,15 @@ type AiExecutionResult = {
 };
 
 export class VercelChatModelAdapter implements ChatModel {
-  constructor(private readonly _options: VercelChatModelAdapterOptions) {}
+  config: VercelChatModelAdapterConfig;
+
+  constructor(config: VercelChatModelAdapterConfig) {
+    this.config = config;
+  }
+
+  get name(): string {
+    return this.config.languageModel.modelId;
+  }
 
   async generateResponse(context: RequestContext): Promise<AssistantResponse> {
     let systemPrompt = context.systemPrompt();
@@ -123,10 +131,10 @@ export class VercelChatModelAdapter implements ChatModel {
     const startTime = performance.now();
     const result = await streamText({
       ...VERCEL_AI_SHARED_OPTIONS,
-      model: this._options.languageModel,
+      model: this.config.languageModel,
+      maxTokens: this.config.maxTokens,
+      maxSteps: this.config.maxSteps,
       messages: context.messages,
-      maxTokens: this._options.maxTokens,
-      maxSteps: this._options.maxSteps,
       tools: context.tools,
     });
 
@@ -156,10 +164,10 @@ export class VercelChatModelAdapter implements ChatModel {
     const startTime = performance.now();
     const result = await generateText({
       ...VERCEL_AI_SHARED_OPTIONS,
-      model: this._options.languageModel,
+      model: this.config.languageModel,
+      maxTokens: this.config.maxTokens,
+      maxSteps: this.config.maxSteps,
       messages: context.messages,
-      maxTokens: this._options.maxTokens,
-      maxSteps: this._options.maxSteps,
       tools: context.tools,
     });
     const responseTime = performance.now() - startTime;
