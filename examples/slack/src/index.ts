@@ -27,6 +27,7 @@ const SYSTEM_PROMPT = 'Your name is Byorg. You are a helpful AI Assistant.';
 const app = createApp({
   chatModel,
   systemPrompt: SYSTEM_PROMPT,
+  // Normalize messages coming from Slack AI apps
   plugins: [slackThreadNormalizerPlugin],
 });
 
