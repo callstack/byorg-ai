@@ -6,3 +6,4 @@ export {
   slackEntityResolverPlugin,
   extractUserMentionsFromMessage,
 } from './plugins/entity-resolver.js';
+export { slackThreadNormalizerPlugin } from './plugins/thread-normalization.js';

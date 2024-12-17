@@ -1,7 +1,7 @@
 import { VercelChatModelAdapter, createApp } from '@callstack/byorg-core';
 import { createOpenAI } from '@ai-sdk/openai';
 import { logger, requireEnv } from '@callstack/byorg-utils';
-import { createSlackApp } from '@callstack/byorg-slack';
+import { createSlackApp, slackThreadNormalizerPlugin } from '@callstack/byorg-slack';
 
 const LANGUAGE_MODEL = 'gpt-4o-2024-11-20';
 const API_KEY = requireEnv('OPENAI_API_KEY');
@@ -27,6 +27,8 @@ const SYSTEM_PROMPT = 'Your name is Byorg. You are a helpful AI Assistant.';
 const app = createApp({
   chatModel,
   systemPrompt: SYSTEM_PROMPT,
+  // Normalize messages coming from Slack AI apps
+  plugins: [slackThreadNormalizerPlugin],
 });
 
 const slack = createSlackApp({
