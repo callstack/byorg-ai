@@ -26,11 +26,16 @@ export const loggingPlugin: ApplicationPlugin = {
   },
 };
 
-export const contextLoggerBuilder = (fieldsToLog: (keyof RequestContext)[]): ApplicationPlugin => {
+export const contextLoggerBuilder = (fieldsToLog?: (keyof RequestContext)[]): ApplicationPlugin => {
   return {
     name: 'context-logger',
     middleware: (context, next): Promise<MessageResponse> => {
       const toLog: Record<string, unknown> = {};
+
+      if (!fieldsToLog || fieldsToLog.length === 0) {
+        logger.info(inspect(context, false, null, true));
+        return next();
+      }
 
       for (const field of fieldsToLog) {
         if (field in context) {
@@ -41,7 +46,7 @@ export const contextLoggerBuilder = (fieldsToLog: (keyof RequestContext)[]): App
       }
 
       if (Object.keys(toLog).length > 0) {
-        console.log(inspect(toLog, false, null, true));
+        logger.info(inspect(toLog, false, null, true));
       }
 
       // Continue middleware chain
