@@ -1,4 +1,4 @@
-import { VercelChatModelAdapter, createApp } from '@callstack/byorg-core';
+import { VercelChatModelAdapter, contextLoggerBuilder, createApp } from '@callstack/byorg-core';
 import { createOpenAI } from '@ai-sdk/openai';
 import { logger, requireEnv } from '@callstack/byorg-utils';
 import { createSlackApp, slackThreadNormalizerPlugin } from '@callstack/byorg-slack';
@@ -28,7 +28,12 @@ const app = createApp({
   chatModel,
   systemPrompt: SYSTEM_PROMPT,
   // Normalize messages coming from Slack AI apps
-  plugins: [slackThreadNormalizerPlugin],
+  plugins: [
+    contextLoggerBuilder([]),
+    contextLoggerBuilder(['messages']),
+    slackThreadNormalizerPlugin,
+    contextLoggerBuilder(),
+  ],
 });
 
 const slack = createSlackApp({
