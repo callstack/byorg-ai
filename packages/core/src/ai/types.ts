@@ -16,5 +16,6 @@ export type ModelUsage = {
 };
 
 export interface ChatModel {
+  name: string;
   generateResponse(context: RequestContext): Promise<AssistantResponse>;
 }
