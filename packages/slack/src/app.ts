@@ -3,7 +3,6 @@ import { ContextBlock, RichTextBlock, WebClient } from '@slack/web-api';
 import { Application } from '@callstack/byorg-core';
 import { logger } from '@callstack/byorg-utils';
 import { parseMarkdownToRichTextBlock } from '@callstack/slack-rich-text';
-import pDebounce from 'p-debounce';
 import {
   SlackMessage,
   SlackApplicationConfig as SlackApplicationConfig,
@@ -11,8 +10,8 @@ import {
 } from './types.js';
 import { fetchFileInfo, getThread } from './slack-api.js';
 import { formatGroupMessage, toCoreMessage } from './messages.js';
-import { wait } from './utils.js';
 import { getBotId } from './bot-id.js';
+import { debounceUpdateResponse } from './utils.js';
 
 type MessageBlock = RichTextBlock | ContextBlock;
 
@@ -91,8 +90,6 @@ function configureSlackApp(app: Application, slack: Slack.App): void {
           blocks,
         });
         responseMessageTs = responseMessage.ts as string;
-
-        await wait(UPDATE_THROTTLE_TIME);
         return;
       }
 
@@ -104,12 +101,11 @@ function configureSlackApp(app: Application, slack: Slack.App): void {
         parse: 'none',
       });
 
-      await wait(UPDATE_THROTTLE_TIME);
       return;
     };
 
     let updatePartialResponsePromise: Promise<void> = Promise.resolve();
-    const updateResponseMessageWithThrottle = pDebounce.promise(updateResponseMessage);
+    const updateResponseMessageWithThrottle = debounceUpdateResponse(updateResponseMessage);
 
     const handlePartialResponse = (response: string): void => {
       updatePartialResponsePromise = updateResponseMessageWithThrottle(response);
