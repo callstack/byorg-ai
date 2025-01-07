@@ -19,12 +19,12 @@ export function debouncePartialUpdate(
 
     // Time-based debounce
     if (lastUpdate !== undefined && performance.now() - lastUpdate < minUpdateTime) {
-      return Promise.resolve();
+      return;
     }
 
-    // Drop too short initial messages
+    // Skip too short initial messages
     if (text.length < minResponseLength) {
-      return Promise.resolve();
+      return;
     }
 
     try {
