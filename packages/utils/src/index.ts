@@ -5,3 +5,6 @@ export type { Logger, LogLevel } from './logger/types.js';
 export { requireEnv } from './env.js';
 
 export { withCache } from './with-cache.js';
+
+export { debouncePartialUpdate } from './debounce.js';
+export type { PartialUpdateFn, DebouncePartialUpdateOptions } from './debounce.js';
