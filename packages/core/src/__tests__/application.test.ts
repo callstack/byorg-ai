@@ -137,3 +137,47 @@ test('uses chat model from context', async () => {
   expect(altModel.calls.length).toBe(1);
   expect(baseModel.calls.length).toBe(0);
 });
+
+test('adds unique and returns references', async () => {
+  const baseModel = createMockChatModel({ delay: 0, seed: 3 });
+  const refFunc = vitest.fn();
+
+  const addReferenceMiddlewareMock = vitest.fn(
+    async (context: RequestContext, next: () => Promise<MessageResponse>) => {
+      context.references.addReferences([{ title: 'Test', url: 'test.com' }]);
+      return await next();
+    },
+  );
+
+  const getReferenceMiddlewareMock = vitest.fn(
+    async (context: RequestContext, next: () => Promise<MessageResponse>) => {
+      const response = await next();
+      refFunc(context.references.getReferences());
+      return response;
+    },
+  );
+
+  const app = createApp({
+    chatModel: baseModel,
+    plugins: [
+      {
+        name: 'add',
+        middleware: addReferenceMiddlewareMock,
+      },
+      {
+        name: 'get',
+        middleware: getReferenceMiddlewareMock,
+      },
+    ],
+  });
+
+  expect(refFunc).not.toBeCalled();
+  await app.processMessages(messages);
+  expect(addReferenceMiddlewareMock).toBeCalledTimes(1);
+  expect(getReferenceMiddlewareMock).toBeCalledTimes(1);
+  expect(refFunc).toBeCalledWith([{ title: 'Test', url: 'test.com' }]);
+  await app.processMessages(messages);
+  expect(addReferenceMiddlewareMock).toBeCalledTimes(2);
+  expect(getReferenceMiddlewareMock).toBeCalledTimes(2);
+  expect(refFunc).toBeCalledWith([{ title: 'Test', url: 'test.com' }]);
+});
