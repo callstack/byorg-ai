@@ -2,7 +2,7 @@
   "name": "@callstack/byorg-docs",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@9.15.3",
+  "packageManager": "pnpm@9.15.3+sha256.c1da43727ccbc1ed42aff4fd6bdb4b1e91e65a818e6efff5b240fbf070ba4eaf",
   "scripts": {
     "dev": "rspress dev",
     "build": "rspress build",

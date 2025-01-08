@@ -1,5 +1,17 @@
 # @callstack/byorg-core
 
+## 0.8.0
+
+### Minor Changes
+
+- 21d4f2e: core: expose `ChatModel.name` property
+
+### Patch Changes
+
+- cb21f9a: Fixed missing references
+- Updated dependencies [ea21cc7]
+  - @callstack/byorg-utils@0.8.0
+
 ## 0.7.0
 
 ### Minor Changes

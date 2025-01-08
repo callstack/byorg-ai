@@ -1,5 +1,11 @@
 # @callstack/byorg-utils
 
+## 0.8.0
+
+### Minor Changes
+
+- ea21cc7: utils: debouncePartialUpdate function for smart debounce handling
+
 ## 0.7.0
 
 ### Patch Changes
