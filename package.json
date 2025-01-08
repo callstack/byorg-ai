@@ -1,7 +1,7 @@
 {
   "name": "@callstack/byorg",
   "type": "module",
-  "packageManager": "pnpm@9.12.2+sha256.2ef6e547b0b07d841d605240dce4d635677831148cd30f6d564b8f4f928f73d2",
+  "packageManager": "pnpm@9.15.3+sha256.c1da43727ccbc1ed42aff4fd6bdb4b1e91e65a818e6efff5b240fbf070ba4eaf",
   "scripts": {
     "build": "turbo build",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",

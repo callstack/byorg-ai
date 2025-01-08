@@ -16,7 +16,7 @@ runs:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 9.12.2+sha256.2ef6e547b0b07d841d605240dce4d635677831148cd30f6d564b8f4f928f73d2
+        version: 9.15.3
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
