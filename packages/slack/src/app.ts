@@ -1,9 +1,8 @@
 import Slack, { LogLevel, SayFn } from '@slack/bolt';
 import { ContextBlock, RichTextBlock, WebClient } from '@slack/web-api';
 import { Application } from '@callstack/byorg-core';
-import { logger } from '@callstack/byorg-utils';
+import { debouncePartialUpdate, logger } from '@callstack/byorg-utils';
 import { parseMarkdownToRichTextBlock } from '@callstack/slack-rich-text';
-import pDebounce from 'p-debounce';
 import {
   SlackMessage,
   SlackApplicationConfig as SlackApplicationConfig,
@@ -11,12 +10,12 @@ import {
 } from './types.js';
 import { fetchFileInfo, getThread } from './slack-api.js';
 import { formatGroupMessage, toCoreMessage } from './messages.js';
-import { wait } from './utils.js';
 import { getBotId } from './bot-id.js';
 
 type MessageBlock = RichTextBlock | ContextBlock;
 
-const UPDATE_THROTTLE_TIME = 1000;
+const MIN_UPDATE_TIME = 3000;
+const MIN_RESPONSE_LENGTH = 250;
 const NOTIFICATION_TEXT_LIMIT = 200;
 
 const RESPONDING_BLOCK: MessageBlock = {
@@ -91,8 +90,6 @@ function configureSlackApp(app: Application, slack: Slack.App): void {
           blocks,
         });
         responseMessageTs = responseMessage.ts as string;
-
-        await wait(UPDATE_THROTTLE_TIME);
         return;
       }
 
@@ -104,15 +101,17 @@ function configureSlackApp(app: Application, slack: Slack.App): void {
         parse: 'none',
       });
 
-      await wait(UPDATE_THROTTLE_TIME);
       return;
     };
 
     let updatePartialResponsePromise: Promise<void> = Promise.resolve();
-    const updateResponseMessageWithThrottle = pDebounce.promise(updateResponseMessage);
+    const updateResponseMessageWithDebounce = debouncePartialUpdate(updateResponseMessage, {
+      minUpdateTime: MIN_UPDATE_TIME,
+      minResponseLength: MIN_RESPONSE_LENGTH,
+    });
 
     const handlePartialResponse = (response: string): void => {
-      updatePartialResponsePromise = updateResponseMessageWithThrottle(response);
+      updatePartialResponsePromise = updateResponseMessageWithDebounce(response);
     };
 
     const startTime = performance.now();
