@@ -1,5 +1,17 @@
 # @callstack/byorg-slack
 
+## 0.8.0
+
+### Patch Changes
+
+- ea21cc7: utils: debouncePartialUpdate function for smart debounce handling
+- Updated dependencies [cb21f9a]
+- Updated dependencies [21d4f2e]
+- Updated dependencies [ea21cc7]
+  - @callstack/byorg-core@0.8.0
+  - @callstack/byorg-utils@0.8.0
+  - @callstack/slack-rich-text@0.8.0
+
 ## 0.7.0
 
 ### Patch Changes

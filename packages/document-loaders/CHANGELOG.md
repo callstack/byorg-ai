@@ -1,5 +1,12 @@
 # @callstack/document-loaders
 
+## 0.8.0
+
+### Patch Changes
+
+- Updated dependencies [ea21cc7]
+  - @callstack/byorg-utils@0.8.0
+
 ## 0.7.0
 
 ### Patch Changes
