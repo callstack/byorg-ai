@@ -84,7 +84,7 @@ The order of plugins is important! Depending on the call to `next`, they are exe
 - Top-down before the call to `next`
 - Bottom-up after the call to `next`
 
-## Midleware early return
+## Middleware early return
 
 Your middleware can also break the execution chain early, stopping the execution of any subsequent middleware.
 
