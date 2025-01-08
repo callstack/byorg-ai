@@ -23,7 +23,7 @@ export { createApp } from './application.js';
 export type { Middleware, NextFunction } from './middleware.js';
 
 export type { AssistantResponse, ChatModel, ModelUsage } from './ai/types.js';
-export type { VercelChatModelAdapterOptions } from './ai/vercel.js';
+export type { VercelChatModelAdapterConfig } from './ai/vercel.js';
 export { VercelChatModelAdapter } from './ai/vercel.js';
 
 export type { Command, CommandsPluginConfig } from './plugins/commands.js';

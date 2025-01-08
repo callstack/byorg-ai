@@ -34,6 +34,7 @@ export function createMockChatModel(config?: MockChatModelConfig): MockChatModel
   let lastRandom = config?.seed ?? Date.now();
   return {
     calls,
+    name: 'mock',
     generateResponse: async (context: RequestContext): Promise<AssistantResponse> => {
       calls.push([context]);
       lastRandom = random(lastRandom);
