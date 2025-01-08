@@ -7,7 +7,7 @@ When a tool call is triggered, you can add references to the context and later u
 References are not automatically added for the AI. You need to implement this functionality if needed.
 :::
 
-Let's create middleware that adds relevant weather information to the context.
+Let's create a tool that adds relevant weather information to the context.
 
 ```js
 async function queryWeather(
