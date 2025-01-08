@@ -10,15 +10,10 @@ OpenAI has implemented tools, but not all AI providers do.
 
 ## Adding tools
 
-First lets start by implementing the tool function. There are two inputs for it `params` that are decided
-by the AI and context that is passed by byorg. Tool function has to return a string, as the information
-returned by it will be then passed back to AI as an 'addition' to system prompt.
-
 To start, implement the tool function. It takes two inputs: `params`, which are determined by the AI, and `context`, which is passed by byorg.
 The tool function must return a string, as this information will be passed back to the AI as an addition to the system prompt.
 
 ```js
-
 async function queryUsers(params: { query: string }, context: RequestContext): Promise<string> {
   const { query } = params;
   const { references } = context;
