@@ -32,13 +32,6 @@ async function analyticsEffect(context: RequestContext, response: MessageRespons
 
 ## Measures vs Marks
 
-This concept comes from [Web Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance).
-Marks are just named 'sequences' for the performance tool to measure.
-Let's say that you have a tool for your AI, and you'd like to check how it performs.
-Issue might be that it's being triggered multiple times by AI. For that reason
-one mark can be a part of multiple measures.
-Single measure is constructed of two marks: `start` and `end`.
-
 This concept is inspired by the [Web Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance). Marks are essentially named sequences that the performance tool uses to measure execution time. For instance, if you have a tool for your AI and want to evaluate its performance, you might find it triggered multiple times by the AI. Therefore, a single mark can be part of multiple measures. A measure is constructed using two marks: `start` and `end`.
 
 :::info
