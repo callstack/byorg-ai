@@ -5,8 +5,8 @@ export const getReferenceStorage = (): ReferenceStorage => {
   const getKey = (ref: DocumentReference) => ref.url;
 
   return {
-    addReferences(references: DocumentReference[]): void {
-      for (const ref of references) {
+    addReferences(referencesToAdd: DocumentReference[]): void {
+      for (const ref of referencesToAdd) {
         const refKey = getKey(ref);
         if (!referencesKeys.has(refKey)) {
           referencesKeys.add(refKey);
