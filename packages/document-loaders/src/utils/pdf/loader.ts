@@ -4,6 +4,9 @@ import { orderBy } from 'lodash';
 import { getLinkBoundingBoxes, PdfLinkBoundingBox } from './links.js';
 import { boundingBoxesOverlap, expandBoundingBox } from './bounding-box.js';
 
+// Makes parser available in bundle when document-loaders are used as dependency
+pdfjs.GlobalWorkerOptions.workerSrc = require.resolve('pdfjs-dist/build/pdf.worker.min.js');
+
 export async function loadPdfContentFromBuffer(buffer: ArrayBuffer): Promise<string> {
   const document = await pdfjs.getDocument(buffer).promise;
   let text = '';
