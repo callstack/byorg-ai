@@ -1,5 +1,12 @@
 # @callstack/document-loaders
 
+## 0.8.1
+
+### Patch Changes
+
+- 4763c6d: Added src for pdf worker
+  - @callstack/byorg-utils@0.8.1
+
 ## 0.8.0
 
 ### Patch Changes

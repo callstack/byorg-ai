@@ -1,6 +1,6 @@
 {
   "name": "@callstack/byorg-discord",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "type": "module",
   "license": "MIT",
   "author": "Szymon Chmal <szymon.chmal@callstack.com> (https://github.com/V3R0N), Maciej Jastrzebski <mdjastrzebski@gmail.com> (https://github.com/mdjastrzebski), Kewin Wereszczynski <kewin.wereszczynski@callstack.com> (https://github.com/Q1w1N)",

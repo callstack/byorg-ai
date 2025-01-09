@@ -1,5 +1,13 @@
 # @callstack/byorg-slack
 
+## 0.8.1
+
+### Patch Changes
+
+- @callstack/byorg-core@0.8.1
+- @callstack/slack-rich-text@0.8.1
+- @callstack/byorg-utils@0.8.1
+
 ## 0.8.0
 
 ### Patch Changes
